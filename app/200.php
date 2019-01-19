@@ -3,8 +3,8 @@
         require __DIR__.'/../src/connect.php';
         
 		$sql                        = "SELECT
-		c.DOMFIC_COD		AS		tipo_estado_codigo,
-		c.DOMFIC_NOM		AS		tipo_estado_nombre,
+		c.DOMFIC_COD		AS		estado_departamento_codigo,
+		c.DOMFIC_NOM		AS		estado_departamento_nombre,
 		b.PAIFIC_COD		AS		pais_codigo, 
 		b.PAIFIC_NOM		AS		pais_nombre, 
 		b.PAIFIC_OBS		AS		pais_observacion,
@@ -13,7 +13,7 @@
 		a.PAIDEP_OBS		AS		departamento_observacion
 		
 		FROM PAIDEP a
-		INNER JOIN PAIFIC b ON a.PAIDEP_COD = b.PAIFIC_COD
+		INNER JOIN PAIFIC b ON a.PAIDEP_PAC = b.PAIFIC_COD
 		INNER JOIN DOMFIC c ON a.PAIDEP_EDC = c.DOMFIC_COD
 		
 		ORDER BY b.PAIFIC_NOM, a.PAIDEP_NOM";
@@ -53,8 +53,8 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
-		c.DOMFIC_COD		AS		tipo_estado_codigo,
-		c.DOMFIC_NOM		AS		tipo_estado_nombre,
+		c.DOMFIC_COD		AS		estado_departamento_codigo,
+		c.DOMFIC_NOM		AS		estado_departamento_nombre,
 		b.PAIFIC_COD		AS		pais_codigo, 
 		b.PAIFIC_NOM		AS		pais_nombre, 
 		b.PAIFIC_OBS		AS		pais_observacion,
@@ -63,7 +63,7 @@
 		a.PAIDEP_OBS		AS		departamento_observacion
 		
 		FROM PAIDEP a
-		INNER JOIN PAIFIC b ON a.PAIDEP_COD = b.PAIFIC_COD
+		INNER JOIN PAIFIC b ON a.PAIDEP_PAC = b.PAIFIC_COD
 		INNER JOIN DOMFIC c ON a.PAIDEP_EDC = c.DOMFIC_COD
 		
 		WHERE a.PAIDEP_COD = '$val00'
@@ -130,7 +130,7 @@
         require __DIR__.'/../src/connect.php';
         
         $val00                      = $request->getAttribute('codigo');
-		$val01                      = $request->getParsedBody()['tipo_estado_codigo'];
+		$val01                      = $request->getParsedBody()['estado_departamento_codigo'];
         $val02                      = $request->getParsedBody()['pais_codigo'];
         $val03                      = strtoupper($request->getParsedBody()['departamento_nombre']);
 		$val04                      = $request->getParsedBody()['departamento_observacion'];
