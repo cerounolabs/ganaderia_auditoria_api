@@ -18,7 +18,7 @@
 		FROM PAIDIS a
 		INNER JOIN PAIDEP b ON a.PAIDIS_DEC = b.PAIDEP_COD
 		INNER JOIN PAIFIC c ON b.PAIDEP_PAC = c.PAIFIC_COD
-		INNER JOIN DOMFIC d ON a.PAIDIS_EDC = d.DOMFIC_COD
+		INNER JOIN DOMFIC d ON a.PAIDIS_ECC = d.DOMFIC_COD
 		
 		ORDER BY c.PAIFIC_NOM, b.PAIDEP_NOM, a.PAIDIS_NOM";
 		
@@ -75,7 +75,7 @@
 		FROM PAIDIS a
 		INNER JOIN PAIDEP b ON a.PAIDIS_DEC = b.PAIDEP_COD
 		INNER JOIN PAIFIC c ON b.PAIDEP_PAC = c.PAIFIC_COD
-		INNER JOIN DOMFIC d ON a.PAIDIS_EDC = d.DOMFIC_COD
+		INNER JOIN DOMFIC d ON a.PAIDIS_ECC = d.DOMFIC_COD
 		
 		WHERE a.PAIDIS_COD = '$val00'
 		ORDER BY c.PAIFIC_NOM, b.PAIDEP_NOM, a.PAIDIS_NOM";
@@ -123,7 +123,7 @@
 		$val04                      = $request->getParsedBody()['distrito_observacion'];
         
         if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO PAIDIS (PAIDIS_EDC, PAIDIS_DEC, PAIDIS_NOM, PAIDIS_OBS) VALUES ('$val01', '$val02', '".$val03."', '".$val04."')";
+            $sql                    = "INSERT INTO PAIDIS (PAIDIS_ECC, PAIDIS_DEC, PAIDIS_NOM, PAIDIS_OBS) VALUES ('$val01', '$val02', '".$val03."', '".$val04."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -151,7 +151,7 @@
 		$val04                      = $request->getParsedBody()['distrito_observacion'];
         
         if (isset($val00) && isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE PAIDIS SET PAIDIS_EDC = '$val01', PAIDIS_DEC = '$val02', PAIDIS_NOM = '".$val03."', PAIDIS_OBS = '".$val04."' WHERE PAIDIS_COD = '$val00'";
+            $sql                    = "UPDATE PAIDIS SET PAIDIS_ECC = '$val01', PAIDIS_DEC = '$val02', PAIDIS_NOM = '".$val03."', PAIDIS_OBS = '".$val04."' WHERE PAIDIS_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
