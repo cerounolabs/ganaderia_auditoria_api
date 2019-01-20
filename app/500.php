@@ -168,13 +168,13 @@
         require __DIR__.'/../src/connect.php';
         
         $val00                      = $request->getAttribute('codigo');
-        $val01                      = $request->getParsedBody()['tipo_estado_codigo'];
-		$val02                      = strtoupper($request->getParsedBody()['tipo_nombre']);
-		$val03                      = strtoupper($request->getParsedBody()['tipo_dominio']);
-		$val04                      = $request->getParsedBody()['tipo_observacion'];
+        $val01                      = $request->getParsedBody()['estado_dominio_codigo'];
+		$val02                      = strtoupper($request->getParsedBody()['dominio_nombre']);
+		$val03                      = strtoupper($request->getParsedBody()['dominio_valor']);
+		$val04                      = $request->getParsedBody()['dominio_observacion'];
         
         if (isset($val00) &&isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE DOMFIC SET DOMFIC_EDC = '$val01', DOMFIC_NOM = '".$val02."', DOMFIC_VAL = '".$val03."', DOMFIC_OBS = '".$val04."' WHERE DOMFIC_COD = '$val00'";
+            $sql                    = "UPDATE DOMFIC SET DOMFIC_EDC = '$val01', DOMFIC_NOM = '".$val02."', DOMFIC_OBS = '".$val04."' WHERE DOMFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);

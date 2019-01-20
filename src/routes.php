@@ -4,4 +4,4 @@
 	require __DIR__.'/../app/300.php';                             //TABLA PAIDIS DISTRITO
 	require __DIR__.'/../app/400.php';                             //TABLA PAICOM COMPAÑIA
 	require __DIR__.'/../app/500.php';                             //TABLA DOMFIC TIPO DOMINIO
-	require __DIR__.'/../app/600.php';                             //TABLA DOMCYS CATEGORÍA/SUBCATEGORÍA
+	require __DIR__.'/../app/600.php';                             //TABLA DOMCYS TIPO/SUBTIPO
