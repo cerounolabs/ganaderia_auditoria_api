@@ -19,7 +19,7 @@
         FROM USUFIC a
         INNER JOIN DOMFIC b ON a.USUFIC_EUC = b.DOMFIC_COD
         
-        WHERE a.USUFIC_USU = '$val00' AND a.USUFIC_PASS = '$val01'
+        WHERE a.USUFIC_USU = '$val01'
         ORDER BY a.USUFIC_COD";
 
         if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
