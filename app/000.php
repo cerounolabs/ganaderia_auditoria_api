@@ -25,10 +25,10 @@
         if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
             if ($query = $mysqli->query($sql_01)) {
                 while($row = $query->fetch_assoc()) {
-                    $pass2 = '$2y$10$INZBU9IMH3DSGpGyQCtbheSLpE377ndoPWW3nerWuzizeJ2Hc1Abq';
-                    if (password_verify("auditor2019", $pass2)) {
+                    $pass = '$2y$10$INZBU9IMH3DSGpGyQCtbheSLpE377ndoPWW3nerWuzizeJ2Hc1Abq';
+                    if (password_verify($val02, $pass)) {
                         $user   = $row['usuario_codigo'];
-                        $sql_02 = "INSERT INTO USULOG (USULOG_EUC, USULOG_USC, USULOG_UUI, USULOG_DIP, USULOG_FEC, USULOG_HOR) VALUES ('1', , '$user', '".$val03."', '".$val04."', '".$val05."', '".$val06."')";
+                        $sql_02 = "INSERT INTO USULOG (USULOG_EUC, USULOG_USC, USULOG_UUI, USULOG_DIP, USULOG_FEC, USULOG_HOR) VALUES ('1', '$user', '".$val03."', '".$val04."', '".$val05."', '".$val06."')";
                         if ($mysqli->query($sql_02) === TRUE) {
                             header("Content-Type: application/json; charset=utf-8");
                             $json   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Acceso correcto. Bienvenido', 'codigo' => 0), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -38,8 +38,7 @@
                         }
                     } else {
                         header("Content-Type: application/json; charset=utf-8");
-                        $pass = password_hash('auditor2019', PASSWORD_DEFAULT);
-                        $json = json_encode(array('code' => 401, 'status' => 'ok', 'message' => 'Contraseña invalida, vuelve a intentar', 'codigo' => $pass), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                        $json = json_encode(array('code' => 401, 'status' => 'ok', 'message' => 'Contraseña invalida, vuelve a intentar', 'codigo' => 0), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
                     }
                 }
                 $query->free();
