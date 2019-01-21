@@ -42,7 +42,8 @@
 					'distrito_nombre'			        => $row['distrito_nombre'],
 					'distrito_observacion'	            => $row['distrito_observacion'],
 					'establecimiento_codigo'			=> $row['establecimiento_codigo'],
-					'establecimiento_nombre'	        => $row['establecimiento_nombre'],
+                    'establecimiento_nombre'	        => $row['establecimiento_nombre'],
+                    'establecimiento_sigor'	            => $row['establecimiento_sigor'],
 					'establecimiento_observacion'	    => $row['establecimiento_observacion']
 				);	
                 $result[]           = $detalle;
@@ -109,7 +110,8 @@
 					'distrito_nombre'			        => $row['distrito_nombre'],
 					'distrito_observacion'	            => $row['distrito_observacion'],
 					'establecimiento_codigo'			=> $row['establecimiento_codigo'],
-					'establecimiento_nombre'	        => $row['establecimiento_nombre'],
+                    'establecimiento_nombre'	        => $row['establecimiento_nombre'],
+                    'establecimiento_sigor'	            => $row['establecimiento_sigor'],
 					'establecimiento_observacion'	    => $row['establecimiento_observacion']
 				);	
                 $result[]           = $detalle;
