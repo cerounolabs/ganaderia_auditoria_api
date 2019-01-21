@@ -7,3 +7,5 @@
 	require __DIR__.'/../app/500.php';                             //TABLA DOMFIC TIPO DOMINIO
 	require __DIR__.'/../app/600.php';                             //TABLA DOMCYS TIPO/SUBTIPO
 	require __DIR__.'/../app/700.php';                             //TABLA ESTFIC ESTABLECIMIENTO
+	require __DIR__.'/../app/800.php';                             //TABLA ESTFIC ESTABLECIMIENTO SECCIÓN
+	require __DIR__.'/../app/900.php';                             //TABLA ESTFIC ESTABLECIMIENTO POTRERO
