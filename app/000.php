@@ -37,7 +37,8 @@
                         }
                     } else {
                         header("Content-Type: application/json; charset=utf-8");
-                        $json               = json_encode(array('code' => 401, 'status' => 'ok', 'message' => 'Contraseña invalida, vuelve a intentar', 'codigo' => 0), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                        $pass = password_hash($_POST['val_02'], PASSWORD_DEFAULT);
+                        $json               = json_encode(array('code' => 401, 'status' => 'ok', 'message' => 'Contraseña invalida, vuelve a intentar', 'codigo' => $pass), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
                     }
                 }
                 $query->free();
