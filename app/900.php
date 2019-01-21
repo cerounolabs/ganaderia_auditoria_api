@@ -12,16 +12,16 @@
 		b.ESTSEC_COD		AS		seccion_codigo, 
 		b.ESTSEC_NOM		AS		seccion_nombre, 
 		b.ESTSEC_OBS		AS		seccion_observacion,
-        a.ESTSEC_COD		AS		potrero_codigo, 
-		a.ESTSEC_NOM		AS		potrero_nombre, 
-		a.ESTSEC_OBS		AS		potrero_observacion
+        a.ESTPOR_COD		AS		potrero_codigo, 
+		a.ESTPOR_NOM		AS		potrero_nombre, 
+		a.ESTPOR_OBS		AS		potrero_observacion
 		
 		FROM ESTPOR a
         INNER JOIN ESTSEC b ON a.ESTPOR_SEC = b.ESTSEC_COD
 		INNER JOIN ESTFIC c ON b.ESTSEC_ESC = c.ESTFIC_COD
 		INNER JOIN DOMFIC d ON a.ESTPOR_EPC = d.DOMFIC_COD
 		
-		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTSEC_NOM";
+		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOR_NOM";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
@@ -71,17 +71,17 @@
 		b.ESTSEC_COD		AS		seccion_codigo, 
 		b.ESTSEC_NOM		AS		seccion_nombre, 
 		b.ESTSEC_OBS		AS		seccion_observacion,
-        a.ESTSEC_COD		AS		potrero_codigo, 
-		a.ESTSEC_NOM		AS		potrero_nombre, 
-		a.ESTSEC_OBS		AS		potrero_observacion
+        a.ESTPOR_COD		AS		potrero_codigo, 
+		a.ESTPOR_NOM		AS		potrero_nombre, 
+		a.ESTPOR_OBS		AS		potrero_observacion
 		
 		FROM ESTPOR a
         INNER JOIN ESTSEC b ON a.ESTPOR_SEC = b.ESTSEC_COD
 		INNER JOIN ESTFIC c ON b.ESTSEC_ESC = c.ESTFIC_COD
 		INNER JOIN DOMFIC d ON a.ESTPOR_EPC = d.DOMFIC_COD
 		
-		WHERE a.ESTSEC_COD = '$val00'
-		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTSEC_NOM";
+		WHERE a.ESTPOR_COD = '$val00'
+		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOT_NOM";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
