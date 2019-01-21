@@ -22,7 +22,7 @@
         WHERE a.USUFIC_USU = '$val00' AND a.USUFIC_PASS = '$val01'
         ORDER BY a.USUFIC_COD";
 
-        if (isset($val00) && isset($val01) && isset($val02) && isset($val03)) {
+        if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
             if ($query = $mysqli->query($sql_01)) {
                 while($row = $query->fetch_assoc()) {
                     if (password_verify($val01, $row['usuario_password'])) {
