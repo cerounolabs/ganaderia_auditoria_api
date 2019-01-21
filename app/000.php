@@ -25,7 +25,7 @@
         if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
             if ($query = $mysqli->query($sql_01)) {
                 while($row = $query->fetch_assoc()) {
-                    if (password_verify($val01, $row['usuario_password'])) {
+                    if (password_verify($val02, $row['usuario_password'])) {
                         $user   = $row['usuario_codigo'];
                         $sql_02 = "INSERT INTO USULOG (USULOG_EUC, USULOG_USC, USULOG_UUI, USULOG_DIP, USULOG_FEC, USULOG_HOR) VALUES (1, , $user, '".$val03."', '".$val04."', '".$val05."', '".$val06."')";
                         if ($mysqli->query($sql_02) === TRUE) {
