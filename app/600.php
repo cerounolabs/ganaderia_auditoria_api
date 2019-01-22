@@ -83,7 +83,7 @@
 		INNER JOIN DOMFIC c ON a.DOMTYS_SUC = c.DOMFIC_COD
 		INNER JOIN DOMFIC d ON a.DOMTYS_ESC = d.DOMFIC_COD
 		
-		WHERE a.DOMCYS_COD = '$val00'
+		WHERE a.DOMTYS_COD = '$val00'
 		ORDER BY b.DOMFIC_NOM, c.DOMFIC_NOM";
 		
         if ($query = $mysqli->query($sql)) {
