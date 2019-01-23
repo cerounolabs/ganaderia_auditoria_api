@@ -33,7 +33,9 @@
 					'ot_codigo'		                        => $row['ot_codigo'],
 					'ot_numero'		                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	            => $row['ot_fecha_inicio_trabajo'],
+                    'ot_fecha_inicio_trabajo_2'	            => str_replace("-", "/", $row['ot_fecha_inicio_trabajo']),
                     'ot_fecha_final_trabajo'	            => $row['ot_fecha_final_trabajo'],
+                    'ot_fecha_final_trabajo_2'	            => str_replace("-", "/", $row['ot_fecha_final_trabajo']),
                     'ot_observacion'	                    => $row['ot_observacion']
 				);	
                 $result[]           = $detalle;
@@ -90,7 +92,9 @@
 					'ot_codigo'		                        => $row['ot_codigo'],
 					'ot_numero'		                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	            => $row['ot_fecha_inicio_trabajo'],
+                    'ot_fecha_inicio_trabajo_2'	            => str_replace("-", "/", $row['ot_fecha_inicio_trabajo']),
                     'ot_fecha_final_trabajo'	            => $row['ot_fecha_final_trabajo'],
+                    'ot_fecha_final_trabajo_2'	            => str_replace("-", "/", $row['ot_fecha_final_trabajo']),
                     'ot_observacion'	                    => $row['ot_observacion']
 				);	
                 $result[]           = $detalle;
