@@ -195,7 +195,7 @@
         $val04                      = $request->getParsedBody()['ot_existencia_observacion'];
         
         if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO DTEXI (ODTEXI_CSC, ODTEXI_ORC, ODTEXI_CAN, ODTEXI_OBS) VALUES ('$val01', '$val02', '$val03', '".$val04."')";
+            $sql                    = "INSERT INTO ODTEXI (ODTEXI_CSC, ODTEXI_ORC, ODTEXI_CAN, ODTEXI_OBS) VALUES ('$val01', '$val02', '$val03', '".$val04."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
