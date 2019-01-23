@@ -3,6 +3,10 @@
         require __DIR__.'/../src/connect.php';
         
 		$sql                        = "SELECT
+        g.DOMFIC_COD		AS		raza_codigo,
+		g.DOMFIC_NOM		AS		raza_nombre,
+        f.DOMFIC_COD		AS		origen_codigo,
+		f.DOMFIC_NOM		AS		origen_nombre,
 		e.DOMFIC_COD		AS		subcategoria_codigo,
 		e.DOMFIC_NOM		AS		subcategoria_nombre,
         d.DOMFIC_COD		AS		categoria_codigo,
@@ -21,12 +25,18 @@
 		INNER JOIN DOMTYS c ON a.ODTEXI_CSC = c.DOMTYS_COD
         INNER JOIN DOMFIC d ON c.DOMTYS_TIC = d.DOMFIC_COD
         INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
+        INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
+        INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
 		
 		ORDER BY a.ODTEXI_ORC";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
                 $detalle			= array(
+                    'raza_codigo'	                                        => $row['raza_codigo'],
+                    'raza_nombre'	                                        => $row['raza_nombre'],
+                    'origen_codigo'	                                        => $row['origen_codigo'],
+					'origen_nombre'	                                        => $row['origen_nombre'],
 					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
                     'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
                     'categoria_codigo'	                                    => $row['categoria_codigo'],
@@ -65,6 +75,10 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
+        g.DOMFIC_COD		AS		raza_codigo,
+		g.DOMFIC_NOM		AS		raza_nombre,
+        f.DOMFIC_COD		AS		origen_codigo,
+		f.DOMFIC_NOM		AS		origen_nombre,
 		e.DOMFIC_COD		AS		subcategoria_codigo,
 		e.DOMFIC_NOM		AS		subcategoria_nombre,
         d.DOMFIC_COD		AS		categoria_codigo,
@@ -83,6 +97,8 @@
 		INNER JOIN DOMTYS c ON a.ODTEXI_CSC = c.DOMTYS_COD
         INNER JOIN DOMFIC d ON c.DOMTYS_TIC = d.DOMFIC_COD
         INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
+        INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
+        INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
 		
 		WHERE a.ODTEXI_COD = '$val00'
 		ORDER BY a.ODTEXI_COD";
@@ -90,6 +106,10 @@
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
                 $detalle			= array(
+                    'raza_codigo'	                                        => $row['raza_codigo'],
+                    'raza_nombre'	                                        => $row['raza_nombre'],
+                    'origen_codigo'	                                        => $row['origen_codigo'],
+					'origen_nombre'	                                        => $row['origen_nombre'],
 					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
                     'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
                     'categoria_codigo'	                                    => $row['categoria_codigo'],
@@ -128,6 +148,10 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
+        g.DOMFIC_COD		AS		raza_codigo,
+		g.DOMFIC_NOM		AS		raza_nombre,
+        f.DOMFIC_COD		AS		origen_codigo,
+		f.DOMFIC_NOM		AS		origen_nombre,
 		e.DOMFIC_COD		AS		subcategoria_codigo,
 		e.DOMFIC_NOM		AS		subcategoria_nombre,
         d.DOMFIC_COD		AS		categoria_codigo,
@@ -146,6 +170,8 @@
 		INNER JOIN DOMTYS c ON a.ODTEXI_CSC = c.DOMTYS_COD
         INNER JOIN DOMFIC d ON c.DOMTYS_TIC = d.DOMFIC_COD
         INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
+        INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
+        INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
 		
 		WHERE a.ODTEXI_ORC = '$val00'
 		ORDER BY a.ODTEXI_COD";
@@ -153,6 +179,10 @@
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
                 $detalle			= array(
+                    'raza_codigo'	                                        => $row['raza_codigo'],
+                    'raza_nombre'	                                        => $row['raza_nombre'],
+                    'origen_codigo'	                                        => $row['origen_codigo'],
+					'origen_nombre'	                                        => $row['origen_nombre'],
 					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
                     'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
                     'categoria_codigo'	                                    => $row['categoria_codigo'],
@@ -193,9 +223,11 @@
         $val02                      = $request->getParsedBody()['ot_codigo'];
         $val03                      = $request->getParsedBody()['ot_existencia_cantidad'];
         $val04                      = $request->getParsedBody()['ot_existencia_observacion'];
+        $val05                      = $request->getParsedBody()['origen_codigo'];
+        $val06                      = $request->getParsedBody()['raza_codigo'];
         
-        if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO ODTEXI (ODTEXI_CSC, ODTEXI_ORC, ODTEXI_CAN, ODTEXI_OBS) VALUES ('$val01', '$val02', '$val03', '".$val04."')";
+        if (isset($val01) && isset($val02) && isset($val03) && isset($val05) && isset($val06)) {
+            $sql                    = "INSERT INTO ODTEXI (ODTEXI_CSC, ODTEXI_ORC, ODTEXI_CAN, ODTEXI_OBS, ODTEXI_TOC, ODTEXI_TRC) VALUES ('$val01', '$val02', '$val03', '".$val04."', '$val05', '$val06')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -221,9 +253,11 @@
         $val02                      = $request->getParsedBody()['ot_codigo'];
         $val03                      = $request->getParsedBody()['ot_existencia_cantidad'];
         $val04                      = $request->getParsedBody()['ot_existencia_observacion'];
+        $val05                      = $request->getParsedBody()['origen_codigo'];
+        $val06                      = $request->getParsedBody()['raza_codigo'];
         
-        if (isset($val00) && isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE ODTEXI SET ODTEXI_CSC = '$val01', ODTEXI_ORC = '$val02', ODTEXI_CAN = '$val03', ODTEXI_OBS = '".$val04."' WHERE ODTEXI_COD = '$val00'";
+        if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val05) && isset($val06)) {
+            $sql                    = "UPDATE ODTEXI SET ODTEXI_CSC = '$val01', ODTEXI_ORC = '$val02', ODTEXI_CAN = '$val03', ODTEXI_OBS = '".$val04."', ODTEXI_TOC = '$val05', ODTEXI_TRC = '$val06' WHERE ODTEXI_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
