@@ -3,8 +3,10 @@
         require __DIR__.'/../src/connect.php';
         
 		$sql                        = "SELECT
-		c.DOMFIC_COD		AS		subcategoria_ot_existencia_codigo,
-		c.DOMFIC_NOM		AS		subcategoria_ot_existencia_nombre,
+		e.DOMFIC_COD		AS		subcategoria_codigo,
+		e.DOMFIC_NOM		AS		subcategoria_nombre,
+        d.DOMFIC_COD		AS		categoria_codigo,
+		d.DOMFIC_NOM		AS		categoria_nombre,
 		b.ODTFIC_COD		AS		ot_codigo, 
 		b.ODTFIC_NRO		AS		ot_numero, 
 		b.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
@@ -16,15 +18,19 @@
 		
 		FROM ODTEXI a
 		INNER JOIN ODTFIC b ON a.ODTEXI_ORC = b.ODTFIC_COD
-		INNER JOIN DOMFIC c ON a.ODTEXI_SUC = c.DOMFIC_COD
+		INNER JOIN DOMFIC c ON a.ODTEXI_CSC = c.DOMTYS_COD
+        INNER JOIN DOMFIC d ON c.DOMTYS_TIC = d.DOMFIC_COD
+        INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
 		
 		ORDER BY a.ODTEXI_ORC";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
                 $detalle			= array(
-					'subcategoria_ot_existencia_codigo'	                    => $row['subcategoria_ot_existencia_codigo'],
-					'subcategoria_ot_existencia_nombre'	                    => $row['subcategoria_ot_existencia_nombre'],
+					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
+                    'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
+                    'categoria_codigo'	                                    => $row['categoria_codigo'],
+					'categoria_nombre'	                                    => $row['categoria_nombre'],
 					'ot_codigo'		                                        => $row['ot_codigo'],
 					'ot_numero'		                                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	                            => $row['ot_fecha_inicio_trabajo'],
@@ -59,8 +65,10 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
-		c.DOMFIC_COD		AS		subcategoria_ot_existencia_codigo,
-		c.DOMFIC_NOM		AS		subcategoria_ot_existencia_nombre,
+		e.DOMFIC_COD		AS		subcategoria_codigo,
+		e.DOMFIC_NOM		AS		subcategoria_nombre,
+        d.DOMFIC_COD		AS		categoria_codigo,
+		d.DOMFIC_NOM		AS		categoria_nombre,
 		b.ODTFIC_COD		AS		ot_codigo, 
 		b.ODTFIC_NRO		AS		ot_numero, 
 		b.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
@@ -72,7 +80,9 @@
 		
 		FROM ODTEXI a
 		INNER JOIN ODTFIC b ON a.ODTEXI_ORC = b.ODTFIC_COD
-		INNER JOIN DOMFIC c ON a.ODTEXI_SUC = c.DOMFIC_COD
+		INNER JOIN DOMFIC c ON a.ODTEXI_CSC = c.DOMTYS_COD
+        INNER JOIN DOMFIC d ON c.DOMTYS_TIC = d.DOMFIC_COD
+        INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
 		
 		WHERE a.ODTEXI_COD = '$val00'
 		ORDER BY a.ODTEXI_COD";
@@ -80,8 +90,10 @@
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
                 $detalle			= array(
-					'subcategoria_ot_existencia_codigo'	                    => $row['subcategoria_ot_existencia_codigo'],
-					'subcategoria_ot_existencia_nombre'	                    => $row['subcategoria_ot_existencia_nombre'],
+					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
+                    'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
+                    'categoria_codigo'	                                    => $row['categoria_codigo'],
+					'categoria_nombre'	                                    => $row['categoria_nombre'],
 					'ot_codigo'		                                        => $row['ot_codigo'],
 					'ot_numero'		                                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	                            => $row['ot_fecha_inicio_trabajo'],
@@ -116,8 +128,10 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
-		c.DOMFIC_COD		AS		subcategoria_ot_existencia_codigo,
-		c.DOMFIC_NOM		AS		subcategoria_ot_existencia_nombre,
+		e.DOMFIC_COD		AS		subcategoria_codigo,
+		e.DOMFIC_NOM		AS		subcategoria_nombre,
+        d.DOMFIC_COD		AS		categoria_codigo,
+		d.DOMFIC_NOM		AS		categoria_nombre,
 		b.ODTFIC_COD		AS		ot_codigo, 
 		b.ODTFIC_NRO		AS		ot_numero, 
 		b.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
@@ -129,7 +143,9 @@
 		
 		FROM ODTEXI a
 		INNER JOIN ODTFIC b ON a.ODTEXI_ORC = b.ODTFIC_COD
-		INNER JOIN DOMFIC c ON a.ODTEXI_SUC = c.DOMFIC_COD
+		INNER JOIN DOMFIC c ON a.ODTEXI_CSC = c.DOMTYS_COD
+        INNER JOIN DOMFIC d ON c.DOMTYS_TIC = d.DOMFIC_COD
+        INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
 		
 		WHERE a.ODTEXI_ORC = '$val00'
 		ORDER BY a.ODTEXI_COD";
@@ -137,8 +153,10 @@
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
                 $detalle			= array(
-					'subcategoria_ot_existencia_codigo'	                    => $row['subcategoria_ot_existencia_codigo'],
-					'subcategoria_ot_existencia_nombre'	                    => $row['subcategoria_ot_existencia_nombre'],
+					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
+                    'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
+                    'categoria_codigo'	                                    => $row['categoria_codigo'],
+					'categoria_nombre'	                                    => $row['categoria_nombre'],
 					'ot_codigo'		                                        => $row['ot_codigo'],
 					'ot_numero'		                                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	                            => $row['ot_fecha_inicio_trabajo'],
@@ -177,7 +195,7 @@
         $val04                      = $request->getParsedBody()['ot_existencia_observacion'];
         
         if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO DTEXI (ODTEXI_SUC, ODTEXI_ORC, ODTEXI_CAN, ODTEXI_OBS) VALUES ('$val01', '$val02', '$val03', '".$val04."')";
+            $sql                    = "INSERT INTO DTEXI (ODTEXI_CSC, ODTEXI_ORC, ODTEXI_CAN, ODTEXI_OBS) VALUES ('$val01', '$val02', '$val03', '".$val04."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -205,7 +223,7 @@
         $val04                      = $request->getParsedBody()['ot_existencia_observacion'];
         
         if (isset($val00) && isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE ODTEXI SET ODTEXI_SUC = '$val01', ODTEXI_ORC = '$val02', ODTEXI_CAN = '$val03', ODTEXI_OBS = '".$val04."' WHERE ODTEXI_COD = '$val00'";
+            $sql                    = "UPDATE ODTEXI SET ODTEXI_CSC = '$val01', ODTEXI_ORC = '$val02', ODTEXI_CAN = '$val03', ODTEXI_OBS = '".$val04."' WHERE ODTEXI_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
