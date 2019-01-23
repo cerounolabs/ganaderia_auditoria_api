@@ -10,3 +10,4 @@
 	require __DIR__.'/../app/800.php';                             //TABLA ESTFIC ESTABLECIMIENTO SECCIÓN
 	require __DIR__.'/../app/900.php';                             //TABLA ESTFIC ESTABLECIMIENTO POTRERO
 	require __DIR__.'/../app/1000.php';                            //TABLA ODTFIC ORDEN DE TRABAJO
+	require __DIR__.'/../app/1100.php';                            //TABLA ODTFIC ORDEN DE TRABAJO EXISTENCIA
