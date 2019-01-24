@@ -63,8 +63,29 @@
             header("Content-Type: application/json; charset=utf-8");
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle    = array(
+                'raza_codigo'	                                        => "",
+                'raza_nombre'	                                        => "",
+                'origen_codigo'	                                        => "",
+                'origen_nombre'	                                        => "",
+                'subcategoria_codigo'	                                => "",
+                'subcategoria_nombre'	                                => "",
+                'categoria_codigo'	                                    => "",
+                'categoria_nombre'	                                    => "",
+                'ot_codigo'		                                        => "",
+                'ot_numero'		                                        => "",
+                'ot_fecha_inicio_trabajo'	                            => "",
+                'ot_fecha_inicio_trabajo_2'	                            => "",
+                'ot_fecha_final_trabajo'	                            => "",
+                'ot_fecha_final_trabajo_2'	                            => "",
+                'ot_observacion'	                                    => "",
+                'ot_existencia_codigo'	                                => "",
+                'ot_existencia_cantidad'	                            => "",
+                'ot_existencia_observacion'	                            => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
@@ -136,8 +157,29 @@
             header("Content-Type: application/json; charset=utf-8");
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle    = array(
+                'raza_codigo'	                                        => "",
+                'raza_nombre'	                                        => "",
+                'origen_codigo'	                                        => "",
+                'origen_nombre'	                                        => "",
+                'subcategoria_codigo'	                                => "",
+                'subcategoria_nombre'	                                => "",
+                'categoria_codigo'	                                    => "",
+                'categoria_nombre'	                                    => "",
+                'ot_codigo'		                                        => "",
+                'ot_numero'		                                        => "",
+                'ot_fecha_inicio_trabajo'	                            => "",
+                'ot_fecha_inicio_trabajo_2'	                            => "",
+                'ot_fecha_final_trabajo'	                            => "",
+                'ot_fecha_final_trabajo_2'	                            => "",
+                'ot_observacion'	                                    => "",
+                'ot_existencia_codigo'	                                => "",
+                'ot_existencia_cantidad'	                            => "",
+                'ot_existencia_observacion'	                            => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
@@ -209,8 +251,29 @@
             header("Content-Type: application/json; charset=utf-8");
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle    = array(
+                'raza_codigo'	                                        => "",
+                'raza_nombre'	                                        => "",
+                'origen_codigo'	                                        => "",
+                'origen_nombre'	                                        => "",
+                'subcategoria_codigo'	                                => "",
+                'subcategoria_nombre'	                                => "",
+                'categoria_codigo'	                                    => "",
+                'categoria_nombre'	                                    => "",
+                'ot_codigo'		                                        => "",
+                'ot_numero'		                                        => "",
+                'ot_fecha_inicio_trabajo'	                            => "",
+                'ot_fecha_inicio_trabajo_2'	                            => "",
+                'ot_fecha_final_trabajo'	                            => "",
+                'ot_fecha_final_trabajo_2'	                            => "",
+                'ot_observacion'	                                    => "",
+                'ot_existencia_codigo'	                                => "",
+                'ot_existencia_cantidad'	                            => "",
+                'ot_existencia_observacion'	                            => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
