@@ -47,10 +47,26 @@
         
         if (isset($result)){
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle			= array(
+                'estado_ot_codigo'	                    => "",
+                'estado_ot_nombre'	                    => "",
+                'establecimiento_codigo'	            => "",
+                'establecimiento_nombre'	            => "",
+                'establecimiento_sigor'		            => "",
+                'establecimiento_observacion'		    => "",
+                'ot_codigo'		                        => "",
+                'ot_numero'		                        => "",
+                'ot_fecha_inicio_trabajo'	            => "",
+                'ot_fecha_inicio_trabajo_2'	            => "",
+                'ot_fecha_final_trabajo'	            => "",
+                'ot_fecha_final_trabajo_2'	            => "",
+                'ot_observacion'	                    => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
@@ -106,10 +122,26 @@
         
         if (isset($result)){
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle			= array(
+                'estado_ot_codigo'	                    => "",
+                'estado_ot_nombre'	                    => "",
+                'establecimiento_codigo'	            => "",
+                'establecimiento_nombre'	            => "",
+                'establecimiento_sigor'		            => "",
+                'establecimiento_observacion'		    => "",
+                'ot_codigo'		                        => "",
+                'ot_numero'		                        => "",
+                'ot_fecha_inicio_trabajo'	            => "",
+                'ot_fecha_inicio_trabajo_2'	            => "",
+                'ot_fecha_final_trabajo'	            => "",
+                'ot_fecha_final_trabajo_2'	            => "",
+                'ot_observacion'	                    => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
