@@ -81,7 +81,7 @@
 		INNER JOIN DOMFIC d ON a.ESTPOR_EPC = d.DOMFIC_COD
 		
 		WHERE a.ESTPOR_COD = '$val00'
-		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOT_NOM";
+		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOR_NOM";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
@@ -141,7 +141,7 @@
 		INNER JOIN DOMFIC d ON a.ESTPOR_EPC = d.DOMFIC_COD
 		
 		WHERE c.ESTFIC_COD = '$val00'
-		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOT_NOM";
+		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOR_NOM";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
