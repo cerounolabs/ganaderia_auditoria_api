@@ -27,7 +27,13 @@
 		ORDER BY c.ESTFIC_NOM, d.PERFIC_APE, d.PERFIC_NOM";
 		
         if ($query = $mysqli->query($sql)) {
-            while($row = $query->fetch_assoc()) {				
+            while($row = $query->fetch_assoc()) {
+                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                    $nombreCompleto = $row['persona_razon_social'];
+                } else {
+                    $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
+                }
+
                 $detalle			= array(
 					'estado_establecimiento_propietario_codigo'	                => $row['estado_establecimiento_propietario_codigo'],
 					'estado_establecimiento_propietario_nombre'	                => $row['estado_establecimiento_propietario_nombre'],
@@ -35,7 +41,8 @@
 					'establecimiento_nombre'	                                => $row['establecimiento_nombre'],
                     'establecimiento_sigor'		                                => $row['establecimiento_sigor'],
                     'establecimiento_observacion'		                        => $row['establecimiento_observacion'],
-					'persona_codigo'		                                    => $row['persona_codigo'],
+                    'persona_codigo'		                                    => $row['persona_codigo'],
+                    'persona_completo'		                                    => $nombreCompleto,
 					'persona_nombre'		                                    => $row['persona_nombre'],
                     'persona_apellido'	                                        => $row['persona_apellido'],
                     'persona_razon_social'		                                => $row['persona_razon_social'],
@@ -54,10 +61,29 @@
         
         if (isset($result)){
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle    = array(
+                'estado_establecimiento_propietario_codigo'	                => '',
+                'estado_establecimiento_propietario_nombre'	                => '',
+                'establecimiento_codigo'	                                => '',
+                'establecimiento_nombre'	                                => '',
+                'establecimiento_sigor'		                                => '',
+                'establecimiento_observacion'		                        => '',
+                'persona_codigo'		                                    => '',
+                'persona_completo'		                                    => '',
+                'persona_nombre'		                                    => '',
+                'persona_apellido'	                                        => '',
+                'persona_razon_social'		                                => '',
+                'persona_documento'		                                    => '',
+                'persona_fecha_nacimiento'	                                => '',
+                'persona_telefono'	                                        => '',
+                'persona_correo_electronico'	                            => '',
+                'establecimiento_propietario_codigo'	                    => ''
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
@@ -94,6 +120,12 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
+                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                    $nombreCompleto = $row['persona_razon_social'];
+                } else {
+                    $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
+                }
+
                 $detalle			= array(
 					'estado_establecimiento_propietario_codigo'	                => $row['estado_establecimiento_propietario_codigo'],
 					'estado_establecimiento_propietario_nombre'	                => $row['estado_establecimiento_propietario_nombre'],
@@ -101,7 +133,8 @@
 					'establecimiento_nombre'	                                => $row['establecimiento_nombre'],
                     'establecimiento_sigor'		                                => $row['establecimiento_sigor'],
                     'establecimiento_observacion'		                        => $row['establecimiento_observacion'],
-					'persona_codigo'		                                    => $row['persona_codigo'],
+                    'persona_codigo'		                                    => $row['persona_codigo'],
+                    'persona_completo'		                                    => $nombreCompleto,
 					'persona_nombre'		                                    => $row['persona_nombre'],
                     'persona_apellido'	                                        => $row['persona_apellido'],
                     'persona_razon_social'		                                => $row['persona_razon_social'],
@@ -120,10 +153,29 @@
         
         if (isset($result)){
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle    = array(
+                'estado_establecimiento_propietario_codigo'	                => '',
+                'estado_establecimiento_propietario_nombre'	                => '',
+                'establecimiento_codigo'	                                => '',
+                'establecimiento_nombre'	                                => '',
+                'establecimiento_sigor'		                                => '',
+                'establecimiento_observacion'		                        => '',
+                'persona_codigo'		                                    => '',
+                'persona_completo'		                                    => '',
+                'persona_nombre'		                                    => '',
+                'persona_apellido'	                                        => '',
+                'persona_razon_social'		                                => '',
+                'persona_documento'		                                    => '',
+                'persona_fecha_nacimiento'	                                => '',
+                'persona_telefono'	                                        => '',
+                'persona_correo_electronico'	                            => '',
+                'establecimiento_propietario_codigo'	                    => ''
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
@@ -160,6 +212,12 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
+                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                    $nombreCompleto = $row['persona_razon_social'];
+                } else {
+                    $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
+                }
+
                 $detalle			= array(
 					'estado_establecimiento_propietario_codigo'	                => $row['estado_establecimiento_propietario_codigo'],
 					'estado_establecimiento_propietario_nombre'	                => $row['estado_establecimiento_propietario_nombre'],
@@ -167,7 +225,8 @@
 					'establecimiento_nombre'	                                => $row['establecimiento_nombre'],
                     'establecimiento_sigor'		                                => $row['establecimiento_sigor'],
                     'establecimiento_observacion'		                        => $row['establecimiento_observacion'],
-					'persona_codigo'		                                    => $row['persona_codigo'],
+                    'persona_codigo'		                                    => $row['persona_codigo'],
+                    'persona_completo'		                                    => $nombreCompleto,
 					'persona_nombre'		                                    => $row['persona_nombre'],
                     'persona_apellido'	                                        => $row['persona_apellido'],
                     'persona_razon_social'		                                => $row['persona_razon_social'],
@@ -186,10 +245,29 @@
         
         if (isset($result)){
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle    = array(
+                'estado_establecimiento_propietario_codigo'	                => '',
+                'estado_establecimiento_propietario_nombre'	                => '',
+                'establecimiento_codigo'	                                => '',
+                'establecimiento_nombre'	                                => '',
+                'establecimiento_sigor'		                                => '',
+                'establecimiento_observacion'		                        => '',
+                'persona_codigo'		                                    => '',
+                'persona_completo'		                                    => '',
+                'persona_nombre'		                                    => '',
+                'persona_apellido'	                                        => '',
+                'persona_razon_social'		                                => '',
+                'persona_documento'		                                    => '',
+                'persona_fecha_nacimiento'	                                => '',
+                'persona_telefono'	                                        => '',
+                'persona_correo_electronico'	                            => '',
+                'establecimiento_propietario_codigo'	                    => ''
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
