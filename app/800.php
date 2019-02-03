@@ -7,7 +7,7 @@
 		c.DOMFIC_NOM		AS		estado_seccion_nombre,
 		b.ESTFIC_COD		AS		establecimiento_codigo,
 		b.ESTFIC_NOM		AS		establecimiento_nombre,
-		b.ESTFIC_SIC		AS		establecimiento_sigor,
+        b.ESTFIC_SIC		AS		establecimiento_sigor,
         b.ESTFIC_OBS		AS		establecimiento_observacion,
 		a.ESTSEC_COD		AS		seccion_codigo, 
 		a.ESTSEC_NOM		AS		seccion_nombre, 
@@ -64,6 +64,8 @@
 
     $app->get('/api/v1/800/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
+        
+        $val00                      = $request->getAttribute('codigo');
         
         $sql                        = "SELECT
 		c.DOMFIC_COD		AS		estado_seccion_codigo,
@@ -129,14 +131,16 @@
     $app->get('/api/v1/800/establecimiento/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
         
+        $val00                      = $request->getAttribute('codigo');
+        
         $sql                        = "SELECT
 		c.DOMFIC_COD		AS		estado_seccion_codigo,
 		c.DOMFIC_NOM		AS		estado_seccion_nombre,
 		b.ESTFIC_COD		AS		establecimiento_codigo,
 		b.ESTFIC_NOM		AS		establecimiento_nombre,
 		b.ESTFIC_SIC		AS		establecimiento_sigor,
-        b.ESTFIC_OBS		AS		establecimiento_observacion,
-		a.ESTSEC_COD		AS		seccion_codigo, 
+        b.ESTFIC_OBS        AS      establecimiento_observacion,
+        a.ESTSEC_COD		AS		seccion_codigo, 
 		a.ESTSEC_NOM		AS		seccion_nombre, 
 		a.ESTSEC_OBS		AS		seccion_observacion
 		
@@ -271,4 +275,3 @@
         
         return $json;
     });
-    
