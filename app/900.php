@@ -50,8 +50,23 @@
             header("Content-Type: application/json; charset=utf-8");
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle			= array(
+                'estado_potrero_codigo'	                => "",
+                'estado_potrero_nombre'	                => "",
+                'establecimiento_codigo'	            => "",
+                'establecimiento_nombre'	            => "",
+                'establecimiento_sigor'		            => "",
+                'establecimiento_observacion'		    => "",
+                'seccion_codigo'		                => "",
+                'seccion_nombre'		                => "",
+                'seccion_observacion'	                => "",
+                'potrero_codigo'		                => "",
+                'potrero_nombre'		                => "",
+                'potrero_observacion'	                => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
@@ -110,8 +125,23 @@
             header("Content-Type: application/json; charset=utf-8");
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle			= array(
+                'estado_potrero_codigo'	                => "",
+                'estado_potrero_nombre'	                => "",
+                'establecimiento_codigo'	            => "",
+                'establecimiento_nombre'	            => "",
+                'establecimiento_sigor'		            => "",
+                'establecimiento_observacion'		    => "",
+                'seccion_codigo'		                => "",
+                'seccion_nombre'		                => "",
+                'seccion_observacion'	                => "",
+                'potrero_codigo'		                => "",
+                'potrero_nombre'		                => "",
+                'potrero_observacion'	                => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
@@ -170,8 +200,23 @@
             header("Content-Type: application/json; charset=utf-8");
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
+            $detalle			= array(
+                'estado_potrero_codigo'	                => "",
+                'estado_potrero_nombre'	                => "",
+                'establecimiento_codigo'	            => "",
+                'establecimiento_nombre'	            => "",
+                'establecimiento_sigor'		            => "",
+                'establecimiento_observacion'		    => "",
+                'seccion_codigo'		                => "",
+                'seccion_nombre'		                => "",
+                'seccion_observacion'	                => "",
+                'potrero_codigo'		                => "",
+                'potrero_nombre'		                => "",
+                'potrero_observacion'	                => ""
+            );	
+            $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => 'null'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
         
         return $json;
