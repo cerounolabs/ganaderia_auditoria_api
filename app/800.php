@@ -44,15 +44,15 @@
             $json   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
-                'estado_seccion_codigo'	                => "",
-                'estado_seccion_nombre'	                => "",
-                'establecimiento_codigo'	            => "",
-                'establecimiento_nombre'	            => "",
-                'establecimiento_sigor'		            => "",
-                'establecimiento_observacion'		    => "",
-                'seccion_codigo'		                => "",
-                'seccion_nombre'		                => "",
-                'seccion_observacion'	                => ""
+                'estado_seccion_codigo'                 => "",
+                'estado_seccion_nombre'                 => "",
+                'establecimiento_codigo'                => "",
+                'establecimiento_nombre'                => "",
+                'establecimiento_sigor'                 => "",
+                'establecimiento_observacion'           => "",
+                'seccion_codigo'                        => "",
+                'seccion_nombre'                        => "",
+                'seccion_observacion'                   => ""
             );
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -108,15 +108,15 @@
             $json   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
-                'estado_seccion_codigo'	                => "",
-                'estado_seccion_nombre'	                => "",
-                'establecimiento_codigo'	            => "",
-                'establecimiento_nombre'	            => "",
-                'establecimiento_sigor'		            => "",
-                'establecimiento_observacion'		    => "",
-                'seccion_codigo'		                => "",
-                'seccion_nombre'		                => "",
-                'seccion_observacion'	                => ""
+                'estado_seccion_codigo'                 => "",
+                'estado_seccion_nombre'                 => "",
+                'establecimiento_codigo'                => "",
+                'establecimiento_nombre'                => "",
+                'establecimiento_sigor'                 => "",
+                'establecimiento_observacion'           => "",
+                'seccion_codigo'                        => "",
+                'seccion_nombre'                        => "",
+                'seccion_observacion'                   => ""
             );
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -172,15 +172,15 @@
             $json       = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
-                'estado_seccion_codigo'	                => "",
-                'estado_seccion_nombre'	                => "",
-                'establecimiento_codigo'	            => "",
-                'establecimiento_nombre'	            => "",
-                'establecimiento_sigor'		            => "",
-                'establecimiento_observacion'		    => "",
-                'seccion_codigo'		                => "",
-                'seccion_nombre'		                => "",
-                'seccion_observacion'	                => ""
+                'estado_seccion_codigo'                 => "",
+                'estado_seccion_nombre'                 => "",
+                'establecimiento_codigo'                => "",
+                'establecimiento_nombre'                => "",
+                'establecimiento_sigor'                 => "",
+                'establecimiento_observacion'           => "",
+                'seccion_codigo'                        => "",
+                'seccion_nombre'                        => "",
+                'seccion_observacion'                   => ""
             );
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
