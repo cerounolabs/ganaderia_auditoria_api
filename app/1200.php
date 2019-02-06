@@ -405,17 +405,18 @@
         $val09                      = $request->getParsedBody()['ot_auditada_observacion'];
         
         if (isset($val01) && isset($val02) && isset($val03) && isset($val05) && isset($val06) && isset($val07)) {
-            $sql                    = "INSERT INTO ODTAUD (ODTAUD_TOC, ODTAUD_TRC, ODTAUD_CSC, ODTAUD_POC, ODTAUD_ORC, ODTAUD_FEC, ODTAUD_CAN, ODTAUD_PES, ODTAUD_OBS) VALUES ('$val01', '$val02', '$val03', '$val04', '$val05', '".$val06."', '$val07', '$val08', '".$val09."')";
+            $sql                    = "INSERT INTO ODTAUD (ODTAUD_TOC, ODTAUD_TRC, ODTAUD_CSC, ODTAUD_POC, ODTAUD_ORC, ODTAUD_FEC, ODTAUD_CAN, ODTAUD_PES, ODTAUD_OBS) 
+                                                   VALUES ('$val01',     '$val02',    '$val03',   '$val04',  '$val05', '".$val06."', '$val07', '$val08', '".$val09."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
             } else {
                 header("Content-Type: application/json; charset=utf-8");
-                $json               = json_encode(array('code' => 204, 'status' => 'failure', 'message' => 'No se pudo insertar el resgistro, ya existe!', 'codigo' => $mysqli->connect_error()), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                $json               = json_encode(array('code' => 204, 'status' => 'failure', 'message' => 'No se pudo insertar el resgistro, ya existe!', 'codigo' => $mysqli->error), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
             }
         } else {
             header("Content-Type: application/json; charset=utf-8");
-            $json                   = json_encode(array('code' => 400, 'status' => 'error', 'message' => 'Verifique, algún campo esta vacio.', 'codigo' => $mysqli->connect_error), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+            $json                   = json_encode(array('code' => 400, 'status' => 'error', 'message' => 'Verifique, algún campo esta vacio.', 'codigo' => $mysqli->error), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         }
 
         $mysqli->close();
