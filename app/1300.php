@@ -32,7 +32,13 @@
 		ORDER BY a.PERFIC_APE, a.PERFIC_NOM";
 		
         if ($query = $mysqli->query($sql)) {
-            while($row = $query->fetch_assoc()) {				
+            while($row = $query->fetch_assoc()) {
+                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                    $nombreCompleto = $row['persona_razon_social'];
+                } else {
+                    $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
+                }
+
                 $detalle			= array(
 					'estado_persona_codigo'                     => $row['estado_persona_codigo'],
                     'estado_persona_nombre'		                => $row['estado_persona_nombre'],
@@ -47,6 +53,7 @@
 					'tipo_documento_valor'			            => $row['tipo_documento_valor'],
                     'tipo_documento_observacion'	            => $row['tipo_documento_observacion'],
                     'persona_codigo'			                => $row['persona_codigo'],
+                    'persona_completo'		                    => $nombreCompleto,
                     'persona_nombre'			                => $row['persona_nombre'],
                     'persona_apellido'			                => $row['persona_apellido'],
                     'persona_razon_social'			            => $row['persona_razon_social'],
@@ -123,6 +130,7 @@
 					'tipo_documento_valor'			            => $row['tipo_documento_valor'],
                     'tipo_documento_observacion'	            => $row['tipo_documento_observacion'],
                     'persona_codigo'			                => $row['persona_codigo'],
+                    'persona_completo'		                    => $nombreCompleto,
                     'persona_nombre'			                => $row['persona_nombre'],
                     'persona_apellido'			                => $row['persona_apellido'],
                     'persona_razon_social'			            => $row['persona_razon_social'],
