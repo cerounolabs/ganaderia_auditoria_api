@@ -17,7 +17,8 @@
         c.ESTFIC_OBS		AS		establecimiento_observacion,
 		b.DOMFIC_COD		AS		estado_establecimiento_propietario_codigo,
 		b.DOMFIC_NOM		AS		estado_establecimiento_propietario_nombre,
-        a.ESTPRO_COD		AS		establecimiento_propietario_codigo
+        a.ESTPRO_COD		AS		establecimiento_propietario_codigo,
+        a.ESTPRO_MAR		AS		establecimiento_propietario_marca
 		
 		FROM ESTPRO a
         INNER JOIN DOMFIC b ON a.ESTPRO_EPC = b.DOMFIC_COD
@@ -50,7 +51,8 @@
                     'persona_fecha_nacimiento'	                                => $row['persona_fecha_nacimiento'],
                     'persona_telefono'	                                        => $row['persona_telefono'],
                     'persona_correo_electronico'	                            => $row['persona_correo_electronico'],
-                    'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo']
+                    'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
+                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca']
 				);	
                 $result[]           = $detalle;
             }
@@ -79,7 +81,8 @@
                 'persona_fecha_nacimiento'	                                => '',
                 'persona_telefono'	                                        => '',
                 'persona_correo_electronico'	                            => '',
-                'establecimiento_propietario_codigo'	                    => ''
+                'establecimiento_propietario_codigo'	                    => '',
+                'establecimiento_propietario_marca'	                        => ''
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -108,7 +111,8 @@
         c.ESTFIC_OBS		AS		establecimiento_observacion,
 		b.DOMFIC_COD		AS		estado_establecimiento_propietario_codigo,
 		b.DOMFIC_NOM		AS		estado_establecimiento_propietario_nombre,
-        a.ESTPRO_COD		AS		establecimiento_propietario_codigo
+        a.ESTPRO_COD		AS		establecimiento_propietario_codigo,
+        a.ESTPRO_MAR		AS		establecimiento_propietario_marca
 		
 		FROM ESTPRO a
         INNER JOIN DOMFIC b ON a.ESTPRO_EPC = b.DOMFIC_COD
@@ -142,7 +146,8 @@
                     'persona_fecha_nacimiento'	                                => $row['persona_fecha_nacimiento'],
                     'persona_telefono'	                                        => $row['persona_telefono'],
                     'persona_correo_electronico'	                            => $row['persona_correo_electronico'],
-                    'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo']
+                    'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
+                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca']
 				);
                 $result[]           = $detalle;
             }
@@ -171,7 +176,8 @@
                 'persona_fecha_nacimiento'	                                => '',
                 'persona_telefono'	                                        => '',
                 'persona_correo_electronico'	                            => '',
-                'establecimiento_propietario_codigo'	                    => ''
+                'establecimiento_propietario_codigo'	                    => '',
+                'establecimiento_propietario_marca'	                        => ''
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -200,7 +206,8 @@
         c.ESTFIC_OBS		AS		establecimiento_observacion,
 		b.DOMFIC_COD		AS		estado_establecimiento_propietario_codigo,
 		b.DOMFIC_NOM		AS		estado_establecimiento_propietario_nombre,
-        a.ESTPRO_COD		AS		establecimiento_propietario_codigo
+        a.ESTPRO_COD		AS		establecimiento_propietario_codigo,
+        a.ESTPRO_MAR		AS		establecimiento_propietario_marca
 		
 		FROM ESTPRO a
         INNER JOIN DOMFIC b ON a.ESTPRO_EPC = b.DOMFIC_COD
@@ -234,7 +241,8 @@
                     'persona_fecha_nacimiento'	                                => $row['persona_fecha_nacimiento'],
                     'persona_telefono'	                                        => $row['persona_telefono'],
                     'persona_correo_electronico'	                            => $row['persona_correo_electronico'],
-                    'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo']
+                    'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
+                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca']
 				);
                 $result[]           = $detalle;
             }
@@ -263,7 +271,8 @@
                 'persona_fecha_nacimiento'	                                => '',
                 'persona_telefono'	                                        => '',
                 'persona_correo_electronico'	                            => '',
-                'establecimiento_propietario_codigo'	                    => ''
+                'establecimiento_propietario_codigo'	                    => '',
+                'establecimiento_propietario_marca'	                        => ''
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -279,9 +288,10 @@
 		$val01                      = $request->getParsedBody()['estado_establecimiento_propietario_codigo'];
         $val02                      = $request->getParsedBody()['establecimiento_codigo'];
         $val03                      = $request->getParsedBody()['persona_codigo'];
+        $val04                      = strtoupper($request->getParsedBody()['estado_establecimiento_propietario_marca']);
         
-        if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO ESTPRO (ESTPRO_EPC, ESTPRO_ESC, ESTPRO_PRC) VALUES ('$val01', '$val02', '$val03')";
+        if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
+            $sql                    = "INSERT INTO ESTPRO (ESTPRO_EPC, ESTPRO_ESC, ESTPRO_PRC, ESTPRO_MAR) VALUES ('$val01', '$val02', '$val03', '".$val04."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -306,9 +316,10 @@
 		$val01                      = $request->getParsedBody()['estado_establecimiento_propietario_codigo'];
         $val02                      = $request->getParsedBody()['establecimiento_codigo'];
         $val03                      = $request->getParsedBody()['persona_codigo'];
+        $val04                      = strtoupper($request->getParsedBody()['estado_establecimiento_propietario_marca']);
         
-        if (isset($val00) && isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE ESTPRO SET ESTPRO_EPC = '$val01', ESTPRO_ESC = '$val02', ESTPRO_PRC = '$val03' WHERE ESTPRO_COD = '$val00'";
+        if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
+            $sql                    = "UPDATE ESTPRO SET ESTPRO_EPC = '$val01', ESTPRO_ESC = '$val02', ESTPRO_PRC = '$val03', ESTPRO_MAR = '".$val04."' WHERE ESTPRO_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
