@@ -475,10 +475,11 @@
         $val07                      = $request->getParsedBody()['ot_auditada_cantidad'];
         $val08                      = $request->getParsedBody()['ot_auditada_peso'];
         $val09                      = $request->getParsedBody()['ot_auditada_observacion'];
+        $val10                      = $request->getParsedBody()['propietario_codigo'];
         
-        if (isset($val01) && isset($val02) && isset($val03) && isset($val05) && isset($val06) && isset($val07)) {
-            $sql                    = "INSERT INTO ODTAUD (ODTAUD_TOC, ODTAUD_TRC, ODTAUD_CSC, ODTAUD_POC, ODTAUD_ORC, ODTAUD_FEC, ODTAUD_CAN, ODTAUD_PES, ODTAUD_OBS) 
-                                                   VALUES ('$val01',     '$val02',    '$val03',   '$val04',  '$val05', '".$val06."', '$val07', '".$val08."', '".$val09."')";
+        if (isset($val01) && isset($val02) && isset($val03) && isset($val05) && isset($val06) && isset($val07) && isset($val10)) {
+            $sql                    = "INSERT INTO ODTAUD (ODTAUD_PRC, ODTAUD_TOC, ODTAUD_TRC, ODTAUD_CSC, ODTAUD_POC, ODTAUD_ORC, ODTAUD_FEC, ODTAUD_CAN, ODTAUD_PES, ODTAUD_OBS) 
+                                                   VALUES ('$val10', '$val01', '$val02', '$val03', '$val04', '$val05', '".$val06."', '$val07', '".$val08."', '".$val09."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -509,9 +510,10 @@
         $val07                      = $request->getParsedBody()['ot_auditada_cantidad'];
         $val08                      = $request->getParsedBody()['ot_auditada_peso'];
         $val09                      = $request->getParsedBody()['ot_auditada_observacion'];
+        $val10                      = $request->getParsedBody()['propietario_codigo'];
         
-        if (isset($val01) && isset($val02) && isset($val03) && isset($val05) && isset($val06) && isset($val07)) {
-            $sql                    = "UPDATE ODTAUD SET ODTAUD_TOC = '$val01', ODTAUD_TRC = '$val02', ODTAUD_CSC = '$val03', ODTAUD_POC = '$val04', ODTAUD_ORC = '$val05', ODTAUD_FEC = '".$val06."', ODTAUD_CAN = '$val07', ODTAUD_PES = '".$val08."', ODTAUD_OBS = '".$val09."' WHERE ODTAUD_COD = '$val00'";
+        if (isset($val01) && isset($val02) && isset($val03) && isset($val05) && isset($val06) && isset($val07) && isset($val10)) {
+            $sql                    = "UPDATE ODTAUD SET ODTAUD_PRC = '$val10', ODTAUD_TOC = '$val01', ODTAUD_TRC = '$val02', ODTAUD_CSC = '$val03', ODTAUD_POC = '$val04', ODTAUD_ORC = '$val05', ODTAUD_FEC = '".$val06."', ODTAUD_CAN = '$val07', ODTAUD_PES = '".$val08."', ODTAUD_OBS = '".$val09."' WHERE ODTAUD_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
