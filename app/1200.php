@@ -3,6 +3,16 @@
         require __DIR__.'/../src/connect.php';
         
 		$sql                        = "SELECT
+        j.PERFIC_COD		AS		persona_codigo,
+        j.PERFIC_NOM		AS		persona_nombre,
+		j.PERFIC_APE		AS		persona_apellido,
+        j.PERFIC_RAZ		AS		persona_razon_social,
+        j.PERFIC_DOC		AS		persona_documento,
+        j.PERFIC_FNA		AS		persona_fecha_nacimiento,
+        j.PERFIC_TEL		AS		persona_telefono,
+        j.PERFIC_COR		AS		persona_correo_electronico,
+        i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
+        i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
         h.ESTPOR_COD        AS      potrero_codigo,
         h.ESTPOR_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
@@ -32,12 +42,23 @@
         INNER JOIN DOMFIC f ON a.ODTAUD_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTAUD_TRC = g.DOMFIC_COD
         INNER JOIN ESTPOR h ON a.ODTAUD_POC = h.ESTPOR_COD
+        INNER JOIN ESTPRO i ON a.ODTAUD_PRC = i.ESTPRO_COD
+        INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
 		
 		ORDER BY a.ODTAUD_FEC";
 		
         if ($query = $mysqli->query($sql)) {
-            while($row = $query->fetch_assoc()) {				
+            while($row = $query->fetch_assoc()) {
+                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                    $nombreCompleto = $row['persona_razon_social'];
+                } else {
+                    $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
+                }
+
                 $detalle			= array(
+                    'propietario_codigo'	                                => $row['establecimiento_propietario_codigo'],
+                    'propietario_nombre'                                    => $nombreCompleto,
+                    'propietario_marca'                                     => $row['establecimiento_propietario_marca'],
                     'origen_codigo'	                                        => $row['origen_codigo'],
 					'origen_nombre'	                                        => $row['origen_nombre'],
                     'raza_codigo'	                                        => $row['raza_codigo'],
@@ -73,6 +94,9 @@
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
+                'propietario_codigo'	                                => "",
+                'propietario_nombre'                                    => "",
+                'propietario_marca'                                     => "",
                 'origen_codigo'	                                        => "",
                 'origen_nombre'	                                        => "",
                 'raza_codigo'	                                        => "",
@@ -109,6 +133,16 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
+        j.PERFIC_COD		AS		persona_codigo,
+        j.PERFIC_NOM		AS		persona_nombre,
+		j.PERFIC_APE		AS		persona_apellido,
+        j.PERFIC_RAZ		AS		persona_razon_social,
+        j.PERFIC_DOC		AS		persona_documento,
+        j.PERFIC_FNA		AS		persona_fecha_nacimiento,
+        j.PERFIC_TEL		AS		persona_telefono,
+        j.PERFIC_COR		AS		persona_correo_electronico,
+        i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
+        i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
         h.ESTPOR_COD        AS      potrero_codigo,
         h.ESTPOR_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
@@ -138,13 +172,24 @@
         INNER JOIN DOMFIC f ON a.ODTAUD_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTAUD_TRC = g.DOMFIC_COD
         INNER JOIN ESTPOR h ON a.ODTAUD_POC = h.ESTPOR_COD
+        INNER JOIN ESTPRO i ON a.ODTAUD_PRC = i.ESTPRO_COD
+        INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
 		
 		WHERE a.ODTAUD_COD = '$val00'
 		ORDER BY a.ODTAUD_FEC";
 		
         if ($query = $mysqli->query($sql)) {
-            while($row = $query->fetch_assoc()) {				
+            while($row = $query->fetch_assoc()) {
+                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                    $nombreCompleto = $row['persona_razon_social'];
+                } else {
+                    $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
+                }
+                
                 $detalle			= array(
+                    'propietario_codigo'	                                => $row['establecimiento_propietario_codigo'],
+                    'propietario_nombre'                                    => $nombreCompleto,
+                    'propietario_marca'                                     => $row['establecimiento_propietario_marca'],
                     'origen_codigo'	                                        => $row['origen_codigo'],
 					'origen_nombre'	                                        => $row['origen_nombre'],
                     'raza_codigo'	                                        => $row['raza_codigo'],
@@ -180,6 +225,9 @@
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
+                'propietario_codigo'	                                => "",
+                'propietario_nombre'                                    => "",
+                'propietario_marca'                                     => "",
                 'origen_codigo'	                                        => "",
                 'origen_nombre'	                                        => "",
                 'raza_codigo'	                                        => "",
@@ -216,6 +264,16 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
+        j.PERFIC_COD		AS		persona_codigo,
+        j.PERFIC_NOM		AS		persona_nombre,
+		j.PERFIC_APE		AS		persona_apellido,
+        j.PERFIC_RAZ		AS		persona_razon_social,
+        j.PERFIC_DOC		AS		persona_documento,
+        j.PERFIC_FNA		AS		persona_fecha_nacimiento,
+        j.PERFIC_TEL		AS		persona_telefono,
+        j.PERFIC_COR		AS		persona_correo_electronico,
+        i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
+        i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
         h.ESTPOR_COD        AS      potrero_codigo,
         h.ESTPOR_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
@@ -245,13 +303,24 @@
         INNER JOIN DOMFIC f ON a.ODTAUD_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTAUD_TRC = g.DOMFIC_COD
         INNER JOIN ESTPOR h ON a.ODTAUD_POC = h.ESTPOR_COD
+        INNER JOIN ESTPRO i ON a.ODTAUD_PRC = i.ESTPRO_COD
+        INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
 		
 		WHERE a.ODTAUD_ORC = '$val00'
 		ORDER BY a.ODTAUD_FEC";
 		
         if ($query = $mysqli->query($sql)) {
-            while($row = $query->fetch_assoc()) {				
+            while($row = $query->fetch_assoc()) {
+                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                    $nombreCompleto = $row['persona_razon_social'];
+                } else {
+                    $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
+                }
+                
                 $detalle			= array(
+                    'propietario_codigo'	                                => $row['establecimiento_propietario_codigo'],
+                    'propietario_nombre'                                    => $nombreCompleto,
+                    'propietario_marca'                                     => $row['establecimiento_propietario_marca'],
                     'origen_codigo'	                                        => $row['origen_codigo'],
 					'origen_nombre'	                                        => $row['origen_nombre'],
                     'raza_codigo'	                                        => $row['raza_codigo'],
@@ -287,6 +356,9 @@
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
+                'propietario_codigo'	                                => "",
+                'propietario_nombre'                                    => "",
+                'propietario_marca'                                     => "",
                 'origen_codigo'	                                        => "",
                 'origen_nombre'	                                        => "",
                 'raza_codigo'	                                        => "",
