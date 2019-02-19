@@ -163,9 +163,9 @@
 		$val01                      = $request->getParsedBody()['estado_persona_codigo'];
         $val02                      = $request->getParsedBody()['tipo_persona_codigo'];
         $val03                      = $request->getParsedBody()['tipo_documento_codigo'];
-        $val04                      = $request->getParsedBody()['persona_nombre'];
-        $val05                      = $request->getParsedBody()['persona_apellido'];
-        $val06                      = $request->getParsedBody()['persona_razon_social'];
+        $val04                      = strtoupper($request->getParsedBody()['persona_nombre']);
+        $val05                      = strtoupper($request->getParsedBody()['persona_apellido']);
+        $val06                      = strtoupper($request->getParsedBody()['persona_razon_social']);
         $val07                      = $request->getParsedBody()['persona_documento'];
         $val08                      = $request->getParsedBody()['persona_fecha_nacimiento'];
         $val09                      = $request->getParsedBody()['persona_telefono'];
@@ -197,9 +197,9 @@
 		$val01                      = $request->getParsedBody()['estado_persona_codigo'];
         $val02                      = $request->getParsedBody()['tipo_persona_codigo'];
         $val03                      = $request->getParsedBody()['tipo_documento_codigo'];
-        $val04                      = $request->getParsedBody()['persona_nombre'];
-        $val05                      = $request->getParsedBody()['persona_apellido'];
-        $val06                      = $request->getParsedBody()['persona_razon_social'];
+        $val04                      = strtoupper($request->getParsedBody()['persona_nombre']);
+        $val05                      = strtoupper($request->getParsedBody()['persona_apellido']);
+        $val06                      = strtoupper($request->getParsedBody()['persona_razon_social']);
         $val07                      = $request->getParsedBody()['persona_documento'];
         $val08                      = $request->getParsedBody()['persona_fecha_nacimiento'];
         $val09                      = $request->getParsedBody()['persona_telefono'];
