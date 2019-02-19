@@ -33,7 +33,7 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
-                if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
+                if ($row['persona_nombre'] == NULL && $row['persona_apellido'] == NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
                     $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
