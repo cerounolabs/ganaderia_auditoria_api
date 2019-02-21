@@ -483,9 +483,9 @@
             $item = 0;
             while($row = $query->fetch_assoc()) {
                 $item   = $item + 1;
-                $dia    = substr($row['fecEvento'], 8);
-                $mes    = substr($row['fecEvento'], 5, -3);
-                $ano    = substr($row['fecEvento'], 0, -6);
+                $dia    = substr($row['ot_auditada_fecha'], 8);
+                $mes    = substr($row['ot_auditada_fecha'], 5, -3);
+                $ano    = substr($row['ot_auditada_fecha'], 0, -6);
                 $fecha  = $dia.'/'.$mes.'/'.$ano;
 
                 $detalle			= array(
