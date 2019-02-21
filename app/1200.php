@@ -463,6 +463,53 @@
         return $json;
     });
 
+    $app->get('/api/v1/1200/ot/resumen/dia/{codigo}', function($request) {
+        require __DIR__.'/../src/connect.php';
+        
+		$val00                      = $request->getAttribute('codigo');
+		$sql                        = "SELECT
+        a.ODTAUD_FEC		AS		ot_auditada_fecha,
+        SUM(a.ODTAUD_CAN)   AS      ot_auditada_cantidad,
+        AVG(a.ODTAUD_PES)   AS      ot_auditada_peso
+
+        FROM ODTAUD a
+
+        WHERE a.ODTAUD_ORC = '$val00'
+
+        GROUP BY a.ODTAUD_FEC
+        ORDER BY a.ODTAUD_FEC";
+		
+        if ($query = $mysqli->query($sql)) {
+            while($row = $query->fetch_assoc()) {				
+                $detalle			= array(
+                    'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
+                    'ot_auditada_cantidad'	                                => $row['ot_auditada_cantidad'],
+                    'ot_auditada_peso'	                                    => $row['ot_auditada_peso']
+				);
+                $result[]           = $detalle;
+            }
+			$query->free();
+        }
+        
+        $mysqli->close();
+        
+        if (isset($result)){
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        } else {
+            $detalle    = array(
+                'ot_auditada_fecha'	                                    => "",
+                'ot_auditada_cantidad'	                                => "",
+                'ot_auditada_peso'	                                    => ""
+            );	
+            $result[]   = $detalle;
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        }
+        
+        return $json;
+    });
+
 	$app->post('/api/v1/1200', function($request) {
         require __DIR__.'/../src/connect.php';
 
