@@ -487,9 +487,11 @@
                 $mes    = substr($row['ot_auditada_fecha'], 5, -3);
                 $ano    = substr($row['ot_auditada_fecha'], 0, -6);
                 $fecha  = $dia.'/'.$mes.'/'.$ano;
+                $fecha2 = $dia.'/'.$mes;
 
                 $detalle			= array(
                     'ot_auditada_titulo'	                                => 'Dia '.$item.' '.$fecha,
+                    'ot_auditada_titulo_2'	                                => 'Dia '.$item.' '.$fecha2,
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
                     'ot_auditada_cantidad'	                                => $row['ot_auditada_cantidad'],
                     'ot_auditada_peso'	                                    => $row['ot_auditada_peso']
