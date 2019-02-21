@@ -480,8 +480,16 @@
         ORDER BY a.ODTAUD_FEC";
 		
         if ($query = $mysqli->query($sql)) {
-            while($row = $query->fetch_assoc()) {				
+            $item = 0;
+            while($row = $query->fetch_assoc()) {
+                $item   = $item + 1;
+                $dia    = substr($row['fecEvento'], 8);
+                $mes    = substr($row['fecEvento'], 5, -3);
+                $ano    = substr($row['fecEvento'], 0, -6);
+                $fecha  = $dia.'/'.$mes.'/'.$ano;
+
                 $detalle			= array(
+                    'ot_auditada_titulo'	                                => 'Dia '.$item.' '.$fecha,
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
                     'ot_auditada_cantidad'	                                => $row['ot_auditada_cantidad'],
                     'ot_auditada_peso'	                                    => $row['ot_auditada_peso']
