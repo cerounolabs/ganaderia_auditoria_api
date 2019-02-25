@@ -56,7 +56,7 @@
                 }
 
                 $detalle			= array(
-                    'propietario_codigo'	                                => $row['establecimiento_propietario_codigo'],
+                    'propietario_codigo'	                                => $row['persona_codigo'],
                     'propietario_nombre'                                    => $nombreCompleto,
                     'propietario_marca'                                     => $row['establecimiento_propietario_marca'],
                     'origen_codigo'	                                        => $row['origen_codigo'],
@@ -187,7 +187,7 @@
                 }
                 
                 $detalle			= array(
-                    'propietario_codigo'	                                => $row['establecimiento_propietario_codigo'],
+                    'propietario_codigo'	                                => $row['persona_codigo'],
                     'propietario_nombre'                                    => $nombreCompleto,
                     'propietario_marca'                                     => $row['establecimiento_propietario_marca'],
                     'origen_codigo'	                                        => $row['origen_codigo'],
@@ -318,7 +318,7 @@
                 }
                 
                 $detalle			= array(
-                    'propietario_codigo'	                                => $row['establecimiento_propietario_codigo'],
+                    'propietario_codigo'	                                => $row['persona_codigo'],
                     'propietario_nombre'                                    => $nombreCompleto,
                     'propietario_marca'                                     => $row['establecimiento_propietario_marca'],
                     'origen_codigo'	                                        => $row['origen_codigo'],
