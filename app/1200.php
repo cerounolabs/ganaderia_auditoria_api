@@ -49,6 +49,16 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
+                $dia1    = substr($row['ot_fecha_inicio_trabajo'], 8);
+                $mes1    = substr($row['ot_fecha_inicio_trabajo'], 5, -3);
+                $ano1    = substr($row['ot_fecha_inicio_trabajo'], 0, -6);
+                $fecha1  = $dia1.'/'.$mes1.'/'.$ano1;
+
+                $dia2    = substr($row['ot_fecha_final_trabajo'], 8);
+                $mes2    = substr($row['ot_fecha_final_trabajo'], 5, -3);
+                $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
+                $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
@@ -72,9 +82,9 @@
 					'ot_codigo'		                                        => $row['ot_codigo'],
 					'ot_numero'		                                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	                            => $row['ot_fecha_inicio_trabajo'],
-                    'ot_fecha_inicio_trabajo_2'	                            => str_replace("-", "/", $row['ot_fecha_inicio_trabajo']),
+                    'ot_fecha_inicio_trabajo_2'	                            => $fecha1,
                     'ot_fecha_final_trabajo'	                            => $row['ot_fecha_final_trabajo'],
-                    'ot_fecha_final_trabajo_2'	                            => str_replace("-", "/", $row['ot_fecha_final_trabajo']),
+                    'ot_fecha_final_trabajo_2'	                            => $fecha2,
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_auditada_codigo'	                                => $row['ot_auditada_codigo'],
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
@@ -180,6 +190,16 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
+                $dia1    = substr($row['ot_fecha_inicio_trabajo'], 8);
+                $mes1    = substr($row['ot_fecha_inicio_trabajo'], 5, -3);
+                $ano1    = substr($row['ot_fecha_inicio_trabajo'], 0, -6);
+                $fecha1  = $dia1.'/'.$mes1.'/'.$ano1;
+
+                $dia2    = substr($row['ot_fecha_final_trabajo'], 8);
+                $mes2    = substr($row['ot_fecha_final_trabajo'], 5, -3);
+                $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
+                $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
@@ -203,9 +223,9 @@
 					'ot_codigo'		                                        => $row['ot_codigo'],
 					'ot_numero'		                                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	                            => $row['ot_fecha_inicio_trabajo'],
-                    'ot_fecha_inicio_trabajo_2'	                            => str_replace("-", "/", $row['ot_fecha_inicio_trabajo']),
+                    'ot_fecha_inicio_trabajo_2'	                            => $fecha1,
                     'ot_fecha_final_trabajo'	                            => $row['ot_fecha_final_trabajo'],
-                    'ot_fecha_final_trabajo_2'	                            => str_replace("-", "/", $row['ot_fecha_final_trabajo']),
+                    'ot_fecha_final_trabajo_2'	                            => $fecha2,
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_auditada_codigo'	                                => $row['ot_auditada_codigo'],
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
@@ -311,6 +331,16 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
+                $dia1    = substr($row['ot_fecha_inicio_trabajo'], 8);
+                $mes1    = substr($row['ot_fecha_inicio_trabajo'], 5, -3);
+                $ano1    = substr($row['ot_fecha_inicio_trabajo'], 0, -6);
+                $fecha1  = $dia1.'/'.$mes1.'/'.$ano1;
+
+                $dia2    = substr($row['ot_fecha_final_trabajo'], 8);
+                $mes2    = substr($row['ot_fecha_final_trabajo'], 5, -3);
+                $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
+                $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
@@ -334,9 +364,9 @@
 					'ot_codigo'		                                        => $row['ot_codigo'],
 					'ot_numero'		                                        => $row['ot_numero'],
                     'ot_fecha_inicio_trabajo'	                            => $row['ot_fecha_inicio_trabajo'],
-                    'ot_fecha_inicio_trabajo_2'	                            => str_replace("-", "/", $row['ot_fecha_inicio_trabajo']),
+                    'ot_fecha_inicio_trabajo_2'	                            => $fecha1,
                     'ot_fecha_final_trabajo'	                            => $row['ot_fecha_final_trabajo'],
-                    'ot_fecha_final_trabajo_2'	                            => str_replace("-", "/", $row['ot_fecha_final_trabajo']),
+                    'ot_fecha_final_trabajo_2'	                            => $fecha2,
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_auditada_codigo'	                                => $row['ot_auditada_codigo'],
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
