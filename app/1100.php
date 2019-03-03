@@ -86,11 +86,11 @@
                     'ot_fecha_final_trabajo'	                            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	                            => $fecha2,
                     'ot_observacion'	                                    => $row['ot_observacion'],
-                    'ot_auditada_codigo'	                                => $row['ot_existencia_codigo'],
-                    'ot_auditada_fecha'	                                    => $row['ot_existencia_fecha'],
-                    'ot_auditada_cantidad'	                                => $row['ot_existencia_cantidad'],
-                    'ot_auditada_peso'	                                    => $row['ot_existencia_peso'],
-                    'ot_auditada_observacion'	                            => $row['ot_existencia_observacion']
+                    'ot_existencia_codigo'	                                => $row['ot_existencia_codigo'],
+                    'ot_existencia_fecha'	                                => $row['ot_existencia_fecha'],
+                    'ot_existencia_cantidad'	                            => $row['ot_existencia_cantidad'],
+                    'ot_existencia_peso'	                                => $row['ot_existencia_peso'],
+                    'ot_existencia_observacion'	                            => $row['ot_existencia_observacion']
 				);
                 $result[]           = $detalle;
             }
@@ -226,11 +226,11 @@
                     'ot_fecha_final_trabajo'	                            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	                            => $fecha2,
                     'ot_observacion'	                                    => $row['ot_observacion'],
-                    'ot_auditada_codigo'	                                => $row['ot_existencia_codigo'],
-                    'ot_auditada_fecha'	                                    => $row['ot_existencia_fecha'],
-                    'ot_auditada_cantidad'	                                => $row['ot_existencia_cantidad'],
-                    'ot_auditada_peso'	                                    => $row['ot_existencia_peso'],
-                    'ot_auditada_observacion'	                            => $row['ot_existencia_observacion']
+                    'ot_existencia_codigo'	                                => $row['ot_existencia_codigo'],
+                    'ot_existencia_fecha'	                                => $row['ot_existencia_fecha'],
+                    'ot_existencia_cantidad'	                            => $row['ot_existencia_cantidad'],
+                    'ot_existencia_peso'	                                => $row['ot_existencia_peso'],
+                    'ot_existencia_observacion'	                            => $row['ot_existencia_observacion']
 				);
                 $result[]           = $detalle;
             }
@@ -366,11 +366,11 @@
                     'ot_fecha_final_trabajo'	                            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	                            => $fecha2,
                     'ot_observacion'	                                    => $row['ot_observacion'],
-                    'ot_auditada_codigo'	                                => $row['ot_existencia_codigo'],
-                    'ot_auditada_fecha'	                                    => $row['ot_existencia_fecha'],
-                    'ot_auditada_cantidad'	                                => $row['ot_existencia_cantidad'],
-                    'ot_auditada_peso'	                                    => $row['ot_existencia_peso'],
-                    'ot_auditada_observacion'	                            => $row['ot_existencia_observacion']
+                    'ot_existencia_codigo'	                                => $row['ot_existencia_codigo'],
+                    'ot_existencia_fecha'	                                => $row['ot_existencia_fecha'],
+                    'ot_existencia_cantidad'	                            => $row['ot_existencia_cantidad'],
+                    'ot_existencia_peso'	                                => $row['ot_existencia_peso'],
+                    'ot_existencia_observacion'	                            => $row['ot_existencia_observacion']
 				);
                 $result[]           = $detalle;
             }
