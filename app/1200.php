@@ -59,6 +59,11 @@
                 $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
                 $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
 
+                $dia3    = substr($row['ot_auditada_fecha'], 8);
+                $mes3    = substr($row['ot_auditada_fecha'], 5, -3);
+                $ano3    = substr($row['ot_auditada_fecha'], 0, -6);
+                $fecha3  = $dia3.'/'.$mes3.'/'.$ano3;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
@@ -88,6 +93,7 @@
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_auditada_codigo'	                                => $row['ot_auditada_codigo'],
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
+                    'ot_auditada_fecha_2'	                                => $fecha3,
                     'ot_auditada_cantidad'	                                => $row['ot_auditada_cantidad'],
                     'ot_auditada_peso'	                                    => $row['ot_auditada_peso'],
                     'ot_auditada_observacion'	                            => $row['ot_auditada_observacion']
@@ -126,6 +132,7 @@
                 'ot_observacion'	                                    => "",
                 'ot_auditada_codigo'	                                => "",
                 'ot_auditada_fecha'	                                    => "",
+                'ot_auditada_fecha_2'	                                => "",
                 'ot_auditada_cantidad'	                                => "",
                 'ot_auditada_peso'	                                    => "",
                 'ot_auditada_observacion'	                            => ""
@@ -199,12 +206,17 @@
                 $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
                 $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
 
+                $dia3    = substr($row['ot_auditada_fecha'], 8);
+                $mes3    = substr($row['ot_auditada_fecha'], 5, -3);
+                $ano3    = substr($row['ot_auditada_fecha'], 0, -6);
+                $fecha3  = $dia3.'/'.$mes3.'/'.$ano3;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
                     $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
                 }
-                
+
                 $detalle			= array(
                     'propietario_codigo'	                                => $row['persona_codigo'],
                     'propietario_nombre'                                    => $nombreCompleto,
@@ -228,6 +240,7 @@
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_auditada_codigo'	                                => $row['ot_auditada_codigo'],
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
+                    'ot_auditada_fecha_2'	                                => $fecha3,
                     'ot_auditada_cantidad'	                                => $row['ot_auditada_cantidad'],
                     'ot_auditada_peso'	                                    => $row['ot_auditada_peso'],
                     'ot_auditada_observacion'	                            => $row['ot_auditada_observacion']
@@ -266,6 +279,7 @@
                 'ot_observacion'	                                    => "",
                 'ot_auditada_codigo'	                                => "",
                 'ot_auditada_fecha'	                                    => "",
+                'ot_auditada_fecha_2'	                                => "",
                 'ot_auditada_cantidad'	                                => "",
                 'ot_auditada_peso'	                                    => "",
                 'ot_auditada_observacion'	                            => ""
@@ -340,12 +354,17 @@
                 $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
                 $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
 
+                $dia3    = substr($row['ot_auditada_fecha'], 8);
+                $mes3    = substr($row['ot_auditada_fecha'], 5, -3);
+                $ano3    = substr($row['ot_auditada_fecha'], 0, -6);
+                $fecha3  = $dia3.'/'.$mes3.'/'.$ano3;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
                     $nombreCompleto = $row['persona_apellido'].', '.$row['persona_nombre'];
                 }
-                
+
                 $detalle			= array(
                     'propietario_codigo'	                                => $row['persona_codigo'],
                     'propietario_nombre'                                    => $nombreCompleto,
@@ -369,6 +388,7 @@
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_auditada_codigo'	                                => $row['ot_auditada_codigo'],
                     'ot_auditada_fecha'	                                    => $row['ot_auditada_fecha'],
+                    'ot_auditada_fecha_2'	                                => $fecha3,
                     'ot_auditada_cantidad'	                                => $row['ot_auditada_cantidad'],
                     'ot_auditada_peso'	                                    => $row['ot_auditada_peso'],
                     'ot_auditada_observacion'	                            => $row['ot_auditada_observacion']
@@ -407,6 +427,7 @@
                 'ot_observacion'	                                    => "",
                 'ot_auditada_codigo'	                                => "",
                 'ot_auditada_fecha'	                                    => "",
+                'ot_auditada_fecha_2'	                                => "",
                 'ot_auditada_cantidad'	                                => "",
                 'ot_auditada_peso'	                                    => "",
                 'ot_auditada_observacion'	                            => ""

@@ -59,6 +59,11 @@
                 $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
                 $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
 
+                $dia3    = substr($row['ot_existencia_fecha'], 8);
+                $mes3    = substr($row['ot_existencia_fecha'], 5, -3);
+                $ano3    = substr($row['ot_existencia_fecha'], 0, -6);
+                $fecha3  = $dia3.'/'.$mes3.'/'.$ano3;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
@@ -88,6 +93,7 @@
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_existencia_codigo'	                                => $row['ot_existencia_codigo'],
                     'ot_existencia_fecha'	                                => $row['ot_existencia_fecha'],
+                    'ot_existencia_fecha_2'	                                => $fecha3,
                     'ot_existencia_cantidad'	                            => $row['ot_existencia_cantidad'],
                     'ot_existencia_peso'	                                => $row['ot_existencia_peso'],
                     'ot_existencia_observacion'	                            => $row['ot_existencia_observacion']
@@ -124,11 +130,12 @@
                 'ot_fecha_final_trabajo'	                            => "",
                 'ot_fecha_final_trabajo_2'	                            => "",
                 'ot_observacion'	                                    => "",
-                'ot_auditada_codigo'	                                => "",
-                'ot_auditada_fecha'	                                    => "",
-                'ot_auditada_cantidad'	                                => "",
-                'ot_auditada_peso'	                                    => "",
-                'ot_auditada_observacion'	                            => ""
+                'ot_existencia_codigo'	                                => "",
+                'ot_existencia_fecha'	                                => "",
+                'ot_existencia_fecha_2'	                                => "",
+                'ot_existencia_cantidad'	                            => "",
+                'ot_existencia_peso'	                                => "",
+                'ot_existencia_observacion'	                            => ""
             );
             header("Content-Type: application/json; charset=utf-8");
             $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -199,6 +206,11 @@
                 $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
                 $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
 
+                $dia3    = substr($row['ot_existencia_fecha'], 8);
+                $mes3    = substr($row['ot_existencia_fecha'], 5, -3);
+                $ano3    = substr($row['ot_existencia_fecha'], 0, -6);
+                $fecha3  = $dia3.'/'.$mes3.'/'.$ano3;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
@@ -228,6 +240,7 @@
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_existencia_codigo'	                                => $row['ot_existencia_codigo'],
                     'ot_existencia_fecha'	                                => $row['ot_existencia_fecha'],
+                    'ot_existencia_fecha_2'	                                => $fecha3,
                     'ot_existencia_cantidad'	                            => $row['ot_existencia_cantidad'],
                     'ot_existencia_peso'	                                => $row['ot_existencia_peso'],
                     'ot_existencia_observacion'	                            => $row['ot_existencia_observacion']
@@ -264,11 +277,12 @@
                 'ot_fecha_final_trabajo'	                            => "",
                 'ot_fecha_final_trabajo_2'	                            => "",
                 'ot_observacion'	                                    => "",
-                'ot_auditada_codigo'	                                => "",
-                'ot_auditada_fecha'	                                    => "",
-                'ot_auditada_cantidad'	                                => "",
-                'ot_auditada_peso'	                                    => "",
-                'ot_auditada_observacion'	                            => ""
+                'ot_existencia_codigo'	                                => "",
+                'ot_existencia_fecha'	                                => "",
+                'ot_existencia_fecha_2'	                                => "",
+                'ot_existencia_cantidad'	                            => "",
+                'ot_existencia_peso'	                                => "",
+                'ot_existencia_observacion'	                            => ""
             );
             header("Content-Type: application/json; charset=utf-8");
             $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -339,6 +353,11 @@
                 $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
                 $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
 
+                $dia3    = substr($row['ot_existencia_fecha'], 8);
+                $mes3    = substr($row['ot_existencia_fecha'], 5, -3);
+                $ano3    = substr($row['ot_existencia_fecha'], 0, -6);
+                $fecha3  = $dia3.'/'.$mes3.'/'.$ano3;
+
                 if ($row['persona_nombre'] === NULL && $row['persona_apellido'] === NULL) {
                     $nombreCompleto = $row['persona_razon_social'];
                 } else {
@@ -368,6 +387,7 @@
                     'ot_observacion'	                                    => $row['ot_observacion'],
                     'ot_existencia_codigo'	                                => $row['ot_existencia_codigo'],
                     'ot_existencia_fecha'	                                => $row['ot_existencia_fecha'],
+                    'ot_existencia_fecha_2'	                                => $fecha3,
                     'ot_existencia_cantidad'	                            => $row['ot_existencia_cantidad'],
                     'ot_existencia_peso'	                                => $row['ot_existencia_peso'],
                     'ot_existencia_observacion'	                            => $row['ot_existencia_observacion']
@@ -406,6 +426,7 @@
                 'ot_observacion'	                                    => "",
                 'ot_existencia_codigo'	                                => "",
                 'ot_existencia_fecha'	                                => "",
+                'ot_existencia_fecha_2'	                                => "",
                 'ot_existencia_cantidad'	                            => "",
                 'ot_existencia_peso'	                                => "",
                 'ot_existencia_observacion'	                            => ""
