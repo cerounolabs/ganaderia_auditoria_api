@@ -339,7 +339,7 @@
         INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
 		
 		WHERE a.ODTEXI_ORC = '$val00'
-		ORDER BY a.ODTEXI_COD";
+		ORDER BY a.ODTEXI_FEC";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
