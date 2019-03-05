@@ -12,16 +12,16 @@
 		b.ESTSEC_COD		AS		seccion_codigo, 
 		b.ESTSEC_NOM		AS		seccion_nombre, 
 		b.ESTSEC_OBS		AS		seccion_observacion,
-        a.ESTPOR_COD		AS		potrero_codigo, 
-		a.ESTPOR_NOM		AS		potrero_nombre, 
-		a.ESTPOR_OBS		AS		potrero_observacion
+        a.ESTPOT_COD		AS		potrero_codigo, 
+		a.ESTPOT_NOM		AS		potrero_nombre, 
+		a.ESTPOT_OBS		AS		potrero_observacion
 		
-		FROM ESTPOR a
-        INNER JOIN ESTSEC b ON a.ESTPOR_SEC = b.ESTSEC_COD
+		FROM ESTPOT a
+        INNER JOIN ESTSEC b ON a.ESTPOT_SEC = b.ESTSEC_COD
 		INNER JOIN ESTFIC c ON b.ESTSEC_ESC = c.ESTFIC_COD
-		INNER JOIN DOMFIC d ON a.ESTPOR_EPC = d.DOMFIC_COD
+		INNER JOIN DOMFIC d ON a.ESTPOT_EPC = d.DOMFIC_COD
 		
-		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOR_NOM";
+		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOT_NOM";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
@@ -86,17 +86,17 @@
 		b.ESTSEC_COD		AS		seccion_codigo, 
 		b.ESTSEC_NOM		AS		seccion_nombre, 
 		b.ESTSEC_OBS		AS		seccion_observacion,
-        a.ESTPOR_COD		AS		potrero_codigo, 
-		a.ESTPOR_NOM		AS		potrero_nombre, 
-		a.ESTPOR_OBS		AS		potrero_observacion
+        a.ESTPOT_COD		AS		potrero_codigo, 
+		a.ESTPOT_NOM		AS		potrero_nombre, 
+		a.ESTPOT_OBS		AS		potrero_observacion
 		
-		FROM ESTPOR a
-        INNER JOIN ESTSEC b ON a.ESTPOR_SEC = b.ESTSEC_COD
+		FROM ESTPOT a
+        INNER JOIN ESTSEC b ON a.ESTPOT_SEC = b.ESTSEC_COD
 		INNER JOIN ESTFIC c ON b.ESTSEC_ESC = c.ESTFIC_COD
-		INNER JOIN DOMFIC d ON a.ESTPOR_EPC = d.DOMFIC_COD
+		INNER JOIN DOMFIC d ON a.ESTPOT_EPC = d.DOMFIC_COD
 		
-		WHERE a.ESTPOR_COD = '$val00'
-		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOR_NOM";
+		WHERE a.ESTPOT_COD = '$val00'
+		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOT_NOM";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
@@ -161,17 +161,17 @@
 		b.ESTSEC_COD		AS		seccion_codigo, 
 		b.ESTSEC_NOM		AS		seccion_nombre, 
 		b.ESTSEC_OBS		AS		seccion_observacion,
-        a.ESTPOR_COD		AS		potrero_codigo, 
-		a.ESTPOR_NOM		AS		potrero_nombre, 
-		a.ESTPOR_OBS		AS		potrero_observacion
+        a.ESTPOT_COD		AS		potrero_codigo, 
+		a.ESTPOT_NOM		AS		potrero_nombre, 
+		a.ESTPOT_OBS		AS		potrero_observacion
 		
-		FROM ESTPOR a
-        INNER JOIN ESTSEC b ON a.ESTPOR_SEC = b.ESTSEC_COD
+		FROM ESTPOT a
+        INNER JOIN ESTSEC b ON a.ESTPOT_SEC = b.ESTSEC_COD
 		INNER JOIN ESTFIC c ON b.ESTSEC_ESC = c.ESTFIC_COD
-		INNER JOIN DOMFIC d ON a.ESTPOR_EPC = d.DOMFIC_COD
+		INNER JOIN DOMFIC d ON a.ESTPOT_EPC = d.DOMFIC_COD
 		
 		WHERE c.ESTFIC_COD = '$val00'
-		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOR_NOM";
+		ORDER BY c.ESTFIC_NOM, b.ESTSEC_NOM, a.ESTPOT_NOM";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {				
@@ -231,7 +231,7 @@
 		$val04                      = $request->getParsedBody()['potrero_observacion'];
         
         if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO ESTPOR (ESTPOR_EPC, ESTPOR_SEC, ESTPOR_NOM, ESTPOR_OBS) VALUES ('$val01', '$val02', '".$val03."', '".$val04."')";
+            $sql                    = "INSERT INTO ESTPOT (ESTPOT_EPC, ESTPOT_SEC, ESTPOT_NOM, ESTPOT_OBS) VALUES ('$val01', '$val02', '".$val03."', '".$val04."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -259,7 +259,7 @@
 		$val04                      = $request->getParsedBody()['potrero_observacion'];
         
         if (isset($val00) && isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE ESTPOR SET ESTPOR_EPC = '$val01', ESTPOR_SEC = '$val02', ESTPOR_NOM = '".$val03."', ESTPOR_OBS = '".$val04."' WHERE ESTPOR_COD = '$val00'";
+            $sql                    = "UPDATE ESTPOT SET ESTPOT_EPC = '$val01', ESTPOT_SEC = '$val02', ESTPOT_NOM = '".$val03."', ESTPOT_OBS = '".$val04."' WHERE ESTPOT_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -283,7 +283,7 @@
         $val00                      = $request->getAttribute('codigo');
         
         if (isset($val00)) {
-            $sql = "DELETE FROM ESTPOR WHERE ESTPOR_COD = '$val00'";
+            $sql = "DELETE FROM ESTPOT WHERE ESTPOT_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se elimino con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);

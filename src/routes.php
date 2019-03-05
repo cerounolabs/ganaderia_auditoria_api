@@ -11,7 +11,7 @@
 
 	require __DIR__.'/../app/700.php';                             //TABLA ESTFIC ESTABLECIMIENTO
 	require __DIR__.'/../app/800.php';                             //TABLA ESTSEC ESTABLECIMIENTO SECCIÓN
-	require __DIR__.'/../app/900.php';                             //TABLA ESTPOR ESTABLECIMIENTO POTRERO
+	require __DIR__.'/../app/900.php';                             //TABLA ESTPOT ESTABLECIMIENTO POTRERO
 	require __DIR__.'/../app/1400.php';                            //TABLA ESTPRO ESTABLECIMIENTO PROPIETARIO
 
 	require __DIR__.'/../app/1000.php';                            //TABLA ODTFIC ORDEN DE TRABAJO

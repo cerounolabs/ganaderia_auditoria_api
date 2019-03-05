@@ -13,8 +13,8 @@
         j.PERFIC_COR		AS		persona_correo_electronico,
         i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
         i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
-        h.ESTPOR_COD        AS      potrero_codigo,
-        h.ESTPOR_NOM        AS      potrero_nombre,
+        h.ESTPOT_COD        AS      potrero_codigo,
+        h.ESTPOT_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
 		g.DOMFIC_NOM		AS		raza_nombre,
         f.DOMFIC_COD		AS		origen_codigo,
@@ -41,7 +41,7 @@
         INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
         INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
-        INNER JOIN ESTPOR h ON a.ODTEXI_POC = h.ESTPOR_COD
+        INNER JOIN ESTPOT h ON a.ODTEXI_POC = h.ESTPOT_COD
         INNER JOIN ESTPRO i ON a.ODTEXI_PRC = i.ESTPRO_COD
         INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
 		
@@ -152,8 +152,8 @@
         j.PERFIC_COR		AS		persona_correo_electronico,
         i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
         i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
-        h.ESTPOR_COD        AS      potrero_codigo,
-        h.ESTPOR_NOM        AS      potrero_nombre,
+        h.ESTPOT_COD        AS      potrero_codigo,
+        h.ESTPOT_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
 		g.DOMFIC_NOM		AS		raza_nombre,
         f.DOMFIC_COD		AS		origen_codigo,
@@ -180,7 +180,7 @@
         INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
         INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
-        INNER JOIN ESTPOR h ON a.ODTEXI_POC = h.ESTPOR_COD
+        INNER JOIN ESTPOT h ON a.ODTEXI_POC = h.ESTPOT_COD
         INNER JOIN ESTPRO i ON a.ODTEXI_PRC = i.ESTPRO_COD
         INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
 		
@@ -292,8 +292,8 @@
         j.PERFIC_COR		AS		persona_correo_electronico,
         i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
         i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
-        h.ESTPOR_COD        AS      potrero_codigo,
-        h.ESTPOR_NOM        AS      potrero_nombre,
+        h.ESTPOT_COD        AS      potrero_codigo,
+        h.ESTPOT_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
 		g.DOMFIC_NOM		AS		raza_nombre,
         f.DOMFIC_COD		AS		origen_codigo,
@@ -320,7 +320,7 @@
         INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
         INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
-        INNER JOIN ESTPOR h ON a.ODTEXI_POC = h.ESTPOR_COD
+        INNER JOIN ESTPOT h ON a.ODTEXI_POC = h.ESTPOT_COD
         INNER JOIN ESTPRO i ON a.ODTEXI_PRC = i.ESTPRO_COD
         INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
 		
