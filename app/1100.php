@@ -3,16 +3,18 @@
         require __DIR__.'/../src/connect.php';
         
 		$sql                        = "SELECT
-        j.PERFIC_COD		AS		persona_codigo,
-        j.PERFIC_NOM		AS		persona_nombre,
-		j.PERFIC_APE		AS		persona_apellido,
-        j.PERFIC_RAZ		AS		persona_razon_social,
-        j.PERFIC_DOC		AS		persona_documento,
-        j.PERFIC_FNA		AS		persona_fecha_nacimiento,
-        j.PERFIC_TEL		AS		persona_telefono,
-        j.PERFIC_COR		AS		persona_correo_electronico,
-        i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
-        i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
+        k.PERFIC_COD		AS		persona_codigo,
+        k.PERFIC_NOM		AS		persona_nombre,
+		k.PERFIC_APE		AS		persona_apellido,
+        k.PERFIC_RAZ		AS		persona_razon_social,
+        k.PERFIC_DOC		AS		persona_documento,
+        k.PERFIC_FNA		AS		persona_fecha_nacimiento,
+        k.PERFIC_TEL		AS		persona_telefono,
+        k.PERFIC_COR		AS		persona_correo_electronico,
+        j.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
+        j.ESTPRO_MAR        AS      establecimiento_propietario_marca,
+        i.ESTSEC_COD		AS		seccion_codigo, 
+		i.ESTSEC_NOM		AS		seccion_nombre,
         h.ESTPOT_COD        AS      potrero_codigo,
         h.ESTPOT_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
@@ -42,8 +44,9 @@
         INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
         INNER JOIN ESTPOT h ON a.ODTEXI_POC = h.ESTPOT_COD
-        INNER JOIN ESTPRO i ON a.ODTEXI_PRC = i.ESTPRO_COD
-        INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
+        INNER JOIN ESTSEC i ON h.ESTPOT_SEC = i.ESTSEC_COD
+        INNER JOIN ESTPRO j ON a.ODTAUD_PRC = j.ESTPRO_COD
+        INNER JOIN PERFIC k ON j.ESTPRO_PRC = k.PERFIC_COD
 		
 		ORDER BY a.ODTEXI_FEC";
 		
@@ -82,6 +85,8 @@
 					'categoria_nombre'	                                    => $row['categoria_nombre'],
 					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
                     'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
+                    'seccion_codigo'		                                => $row['seccion_codigo'],
+					'seccion_nombre'		                                => $row['seccion_nombre'],
                     'potrero_codigo'	                                    => $row['potrero_codigo'],
                     'potrero_nombre'	                                    => $row['potrero_nombre'],
 					'ot_codigo'		                                        => $row['ot_codigo'],
@@ -121,6 +126,8 @@
                 'categoria_nombre'	                                    => "",
                 'subcategoria_codigo'	                                => "",
                 'subcategoria_nombre'	                                => "",
+                'seccion_codigo'		                                => "",
+				'seccion_nombre'		                                => "",
                 'potrero_codigo'	                                    => "",
                 'potrero_nombre'	                                    => "",
                 'ot_codigo'		                                        => "",
@@ -149,16 +156,18 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
-        j.PERFIC_COD		AS		persona_codigo,
-        j.PERFIC_NOM		AS		persona_nombre,
-		j.PERFIC_APE		AS		persona_apellido,
-        j.PERFIC_RAZ		AS		persona_razon_social,
-        j.PERFIC_DOC		AS		persona_documento,
-        j.PERFIC_FNA		AS		persona_fecha_nacimiento,
-        j.PERFIC_TEL		AS		persona_telefono,
-        j.PERFIC_COR		AS		persona_correo_electronico,
-        i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
-        i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
+        k.PERFIC_COD		AS		persona_codigo,
+        k.PERFIC_NOM		AS		persona_nombre,
+		k.PERFIC_APE		AS		persona_apellido,
+        k.PERFIC_RAZ		AS		persona_razon_social,
+        k.PERFIC_DOC		AS		persona_documento,
+        k.PERFIC_FNA		AS		persona_fecha_nacimiento,
+        k.PERFIC_TEL		AS		persona_telefono,
+        k.PERFIC_COR		AS		persona_correo_electronico,
+        j.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
+        j.ESTPRO_MAR        AS      establecimiento_propietario_marca,
+        i.ESTSEC_COD		AS		seccion_codigo, 
+		i.ESTSEC_NOM		AS		seccion_nombre,
         h.ESTPOT_COD        AS      potrero_codigo,
         h.ESTPOT_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
@@ -188,8 +197,9 @@
         INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
         INNER JOIN ESTPOT h ON a.ODTEXI_POC = h.ESTPOT_COD
-        INNER JOIN ESTPRO i ON a.ODTEXI_PRC = i.ESTPRO_COD
-        INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
+        INNER JOIN ESTSEC i ON h.ESTPOT_SEC = i.ESTSEC_COD
+        INNER JOIN ESTPRO j ON a.ODTAUD_PRC = j.ESTPRO_COD
+        INNER JOIN PERFIC k ON j.ESTPRO_PRC = k.PERFIC_COD
 		
 		WHERE a.ODTEXI_COD = '$val00'
 		ORDER BY a.ODTEXI_COD";
@@ -229,6 +239,8 @@
 					'categoria_nombre'	                                    => $row['categoria_nombre'],
 					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
                     'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
+                    'seccion_codigo'		                                => $row['seccion_codigo'],
+					'seccion_nombre'		                                => $row['seccion_nombre'],
                     'potrero_codigo'	                                    => $row['potrero_codigo'],
                     'potrero_nombre'	                                    => $row['potrero_nombre'],
 					'ot_codigo'		                                        => $row['ot_codigo'],
@@ -268,6 +280,8 @@
                 'categoria_nombre'	                                    => "",
                 'subcategoria_codigo'	                                => "",
                 'subcategoria_nombre'	                                => "",
+                'seccion_codigo'		                                => "",
+				'seccion_nombre'		                                => "",
                 'potrero_codigo'	                                    => "",
                 'potrero_nombre'	                                    => "",
                 'ot_codigo'		                                        => "",
@@ -296,16 +310,18 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
-        j.PERFIC_COD		AS		persona_codigo,
-        j.PERFIC_NOM		AS		persona_nombre,
-		j.PERFIC_APE		AS		persona_apellido,
-        j.PERFIC_RAZ		AS		persona_razon_social,
-        j.PERFIC_DOC		AS		persona_documento,
-        j.PERFIC_FNA		AS		persona_fecha_nacimiento,
-        j.PERFIC_TEL		AS		persona_telefono,
-        j.PERFIC_COR		AS		persona_correo_electronico,
-        i.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
-        i.ESTPRO_MAR        AS      establecimiento_propietario_marca,
+        k.PERFIC_COD		AS		persona_codigo,
+        k.PERFIC_NOM		AS		persona_nombre,
+		k.PERFIC_APE		AS		persona_apellido,
+        k.PERFIC_RAZ		AS		persona_razon_social,
+        k.PERFIC_DOC		AS		persona_documento,
+        k.PERFIC_FNA		AS		persona_fecha_nacimiento,
+        k.PERFIC_TEL		AS		persona_telefono,
+        k.PERFIC_COR		AS		persona_correo_electronico,
+        j.ESTPRO_MAR        AS      establecimiento_propietario_codigo,
+        j.ESTPRO_MAR        AS      establecimiento_propietario_marca,
+        i.ESTSEC_COD		AS		seccion_codigo, 
+		i.ESTSEC_NOM		AS		seccion_nombre,
         h.ESTPOT_COD        AS      potrero_codigo,
         h.ESTPOT_NOM        AS      potrero_nombre,
         g.DOMFIC_COD		AS		raza_codigo,
@@ -335,8 +351,9 @@
         INNER JOIN DOMFIC f ON a.ODTEXI_TOC = f.DOMFIC_COD
         INNER JOIN DOMFIC g ON a.ODTEXI_TRC = g.DOMFIC_COD
         INNER JOIN ESTPOT h ON a.ODTEXI_POC = h.ESTPOT_COD
-        INNER JOIN ESTPRO i ON a.ODTEXI_PRC = i.ESTPRO_COD
-        INNER JOIN PERFIC j ON i.ESTPRO_PRC = j.PERFIC_COD
+        INNER JOIN ESTSEC i ON h.ESTPOT_SEC = i.ESTSEC_COD
+        INNER JOIN ESTPRO j ON a.ODTAUD_PRC = j.ESTPRO_COD
+        INNER JOIN PERFIC k ON j.ESTPRO_PRC = k.PERFIC_COD
 		
 		WHERE a.ODTEXI_ORC = '$val00'
 		ORDER BY a.ODTEXI_FEC";
@@ -376,6 +393,8 @@
 					'categoria_nombre'	                                    => $row['categoria_nombre'],
 					'subcategoria_codigo'	                                => $row['subcategoria_codigo'],
                     'subcategoria_nombre'	                                => $row['subcategoria_nombre'],
+                    'seccion_codigo'		                                => $row['seccion_codigo'],
+					'seccion_nombre'		                                => $row['seccion_nombre'],
                     'potrero_codigo'	                                    => $row['potrero_codigo'],
                     'potrero_nombre'	                                    => $row['potrero_nombre'],
 					'ot_codigo'		                                        => $row['ot_codigo'],
@@ -415,6 +434,8 @@
                 'categoria_nombre'	                                    => "",
                 'subcategoria_codigo'	                                => "",
                 'subcategoria_nombre'	                                => "",
+                'seccion_codigo'		                                => "",
+				'seccion_nombre'		                                => "",
                 'potrero_codigo'	                                    => "",
                 'potrero_nombre'	                                    => "",
                 'ot_codigo'		                                        => "",
