@@ -48,7 +48,7 @@
         INNER JOIN ESTPRO j ON a.ODTAUD_PRC = j.ESTPRO_COD
         INNER JOIN PERFIC k ON j.ESTPRO_PRC = k.PERFIC_COD
 		
-		ORDER BY a.ODTAUD_FEC";
+		ORDER BY a.ODTAUD_FEC, i.ESTSEC_COD, h.ESTPOT_COD";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
@@ -202,7 +202,7 @@
         INNER JOIN PERFIC k ON j.ESTPRO_PRC = k.PERFIC_COD
 		
 		WHERE a.ODTAUD_COD = '$val00'
-		ORDER BY a.ODTAUD_FEC";
+		ORDER BY a.ODTAUD_FEC, i.ESTSEC_COD, h.ESTPOT_COD";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
@@ -357,7 +357,7 @@
         INNER JOIN PERFIC k ON j.ESTPRO_PRC = k.PERFIC_COD
 		
 		WHERE a.ODTAUD_ORC = '$val00'
-		ORDER BY a.ODTAUD_FEC";
+		ORDER BY a.ODTAUD_FEC, i.ESTSEC_COD, h.ESTPOT_COD";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
