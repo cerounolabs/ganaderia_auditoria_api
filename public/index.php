@@ -1,23 +1,27 @@
 <?php
 	session_start();
 
-	header("Access-Control-Allow-Origin: http://auditoria.cerouno.com.py");
-	header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-	header("Access-Control-Allow-Credentials: true");
-	header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+	$http_origin = $_SERVER['HTTP_ORIGIN'];
 
-	date_default_timezone_set('America/Asuncion');
+	if ($http_origin == 'http://auditoria.cerouno.com.py' || $http_origin == 'http://cliente.cerouno.com.py') {
+		header("Access-Control-Allow-Origin: ".$http_origin);
+		header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+		header("Access-Control-Allow-Credentials: true");
+		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
-	use \Psr\Http\Message\ServerRequestInterface as Request;
-	use \Psr\Http\Message\ResponseInterface as Response;
+		date_default_timezone_set('America/Asuncion');
 
-	require __DIR__.'/../../slim/vendor/autoload.php';
-	$settings = require __DIR__.'/../src/settings.php';
+		use \Psr\Http\Message\ServerRequestInterface as Request;
+		use \Psr\Http\Message\ResponseInterface as Response;
 
-	$app = new \Slim\App($settings);
-	require __DIR__.'/../src/dependencies.php';
+		require __DIR__.'/../../slim/vendor/autoload.php';
+		$settings = require __DIR__.'/../src/settings.php';
 
-	//ROUTES
-	require __DIR__.'/../src/routes.php';
-	
-	$app->run();
+		$app = new \Slim\App($settings);
+		require __DIR__.'/../src/dependencies.php';
+
+		//ROUTES
+		require __DIR__.'/../src/routes.php';
+		
+		$app->run();
+	}
