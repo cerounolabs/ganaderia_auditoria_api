@@ -1,5 +1,6 @@
 <?php
 	require __DIR__.'/../app/000.php';                             //TABLA USULOG USUARIO LOGEADO
+	require __DIR__.'/../app/1500.php';                            //TABLA USULOG USUARIO ACCESO
 
 	require __DIR__.'/../app/100.php';                             //TABLA PAIFIC PAÍS
 	require __DIR__.'/../app/200.php';                             //TABLA PAIDEP DEPARTAMENTO
