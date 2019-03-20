@@ -1,4 +1,5 @@
 <?php
+	require __DIR__.'/../app/1600.php';                            //TABLA USULOG USUARIO
 	require __DIR__.'/../app/000.php';                             //TABLA USULOG USUARIO LOGEADO
 	require __DIR__.'/../app/1500.php';                            //TABLA USULOG USUARIO ACCESO
 

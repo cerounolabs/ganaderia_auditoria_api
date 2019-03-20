@@ -331,6 +331,7 @@
 	$app->put('/api/v1/1500/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
         
+        $val00                      = $request->getAttribute('codigo');
 		$val01                      = $request->getParsedBody()['estado_acceso_codigo'];
         $val02                      = $request->getParsedBody()['programa_codigo'];
         $val03                      = $request->getParsedBody()['rol_codigo'];
@@ -340,7 +341,7 @@
         $val07                      = $request->getParsedBody()['acceso_modificar'];
         $val08                      = $request->getParsedBody()['acceso_eliminar'];
         
-        if (isset($val01) && isset($val02) && isset($val03) && isset($val04) && isset($val05) && isset($val06) && isset($val07) && isset($val08)) {
+        if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04) && isset($val05) && isset($val06) && isset($val07) && isset($val08)) {
             $sql                    = "UPDATE USUACC SET USUACC_EPC = '$val01', USUACC_PRC = '$val02', USUACC_ROC = '$val03', USUACC_ING = '".$val04."', USUACC_DSP = '".$val05."', USUACC_INS = '".$val06."', USUACC_UPD = '".$val07."', USUACC_DLT = '".$val08."' WHERE USUACC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
