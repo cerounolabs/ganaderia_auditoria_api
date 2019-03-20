@@ -267,7 +267,7 @@
 	$app->post('/api/v1/1600', function($request) {
         require __DIR__.'/../src/connect.php';
 
-		$val01                      = $request->getParsedBody()['estado_usuario_nombre'];
+		$val01                      = $request->getParsedBody()['estado_usuario_codigo'];
         $val02                      = $request->getParsedBody()['rol_codigo'];
         $val03                      = $request->getParsedBody()['persona_codigo'];
         $val04                      = strtoupper($request->getParsedBody()['usuario_nombre']);
@@ -297,7 +297,7 @@
         require __DIR__.'/../src/connect.php';
         
         $val00                      = $request->getAttribute('codigo');
-		$val01                      = $request->getParsedBody()['estado_usuario_nombre'];
+		$val01                      = $request->getParsedBody()['estado_usuario_codigo'];
         $val02                      = $request->getParsedBody()['rol_codigo'];
         $val03                      = $request->getParsedBody()['persona_codigo'];
         $val04                      = strtoupper($request->getParsedBody()['usuario_nombre']);
