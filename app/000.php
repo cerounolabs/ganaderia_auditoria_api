@@ -68,7 +68,7 @@
 
                     if (password_verify($val02, $pass)) {
                         $user   = $row['usuario_codigo'];
-                        $sql_02 = "INSERT INTO USULOG (USULOG_EUC, USULOG_USC, USULOG_UUI, USULOG_DIP, USULOG_FEC, USULOG_HOR, USULOG_HOS, USULOG_NAV, USULOG_ANT) VALUES ('1', '$user', '".$val03."', '".$val04."', '".$val08."', '".$val09."' , '".$val05."' , '".$val06."' , '".$val07."')";
+                        $sql_02 = "INSERT INTO USULOG (USULOG_EUC, USULOG_USC, USULOG_UUI, USULOG_DIP, USULOG_FEC, USULOG_HOR, USULOG_HOS, USULOG_NAV, USULOG_ANT) VALUES ('1', '$user', '".$val03."', '".$val04."', '".$val08."', '".$val09."', '".$val05."', '".$val06."', '".$val07."')";
                         if ($mysqli->query($sql_02) === TRUE) {
                             header("Content-Type: application/json; charset=utf-8");
                             $json   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Acceso correcto. Bienvenido', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
