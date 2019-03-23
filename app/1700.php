@@ -215,7 +215,7 @@
 		INNER JOIN ESTFIC c ON a.ESTUSU_ESC = c.ESTFIC_COD
 		INNER JOIN USUFIC d ON a.ESTUSU_USC = d.USUFIC_COD
 		
-		WHERE d.USUFIC_COD = '$val00'
+		WHERE d.USUFIC_USU = '$val00'
 		ORDER BY a.ESTUSU_COD";
 		
         if ($query = $mysqli->query($sql)) {
