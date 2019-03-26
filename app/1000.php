@@ -257,8 +257,8 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
-		d.DOMFIC_COD		AS		estado_ot_codigo,
-		d.DOMFIC_NOM		AS		estado_ot_nombre,
+		e.DOMFIC_COD		AS		estado_ot_codigo,
+		e.DOMFIC_NOM		AS		estado_ot_nombre,
 		c.ESTFIC_COD		AS		establecimiento_codigo,
 		c.ESTFIC_NOM		AS		establecimiento_nombre,
 		c.ESTFIC_SIC		AS		establecimiento_sigor,
@@ -272,9 +272,11 @@
 		FROM ODTFIC a
 		INNER JOIN ESTUSU b ON a.ODTFIC_ESC = b.ESTUSU_ESC
         INNER JOIN ESTFIC c ON b.ESTUSU_ESC = c.ESTFIC_COD
-        INNER JOIN DOMFIC d ON a.ODTFIC_EOC = d.DOMFIC_COD
+        INNER JOIN USUFIC d ON b.ESTUSU_USC = d.USUFIC_COD
+        INNER JOIN DOMFIC e ON a.ODTFIC_EOC = e.DOMFIC_COD
 		
-		WHERE b.ESTUSU_USC = '$val00'
+		WHERE d.USUFIC_USU = '$val00'
+		
 		ORDER BY a.ODTFIC_NRO DESC";
 		
         if ($query = $mysqli->query($sql)) {
