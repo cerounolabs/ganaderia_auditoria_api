@@ -275,7 +275,7 @@
         $val06                      = password_hash($val05, PASSWORD_DEFAULT);
         
         if (isset($val01) && isset($val02) && isset($val03) && isset($val04) && isset($val05) && isset($val06)) {
-            $sql                    = "INSERT INTO USUFIC (USUFIC_EUC, USUFIC_ROC, USUFIC_PEC, USUFIC_USU, USUFIC_PASS) VALUES ('$val01', '$val02', '$val03', '".$val04."', '".$val06."')";
+            $sql                    = "INSERT INTO USUFIC (USUFIC_EUC, USUFIC_ROC, USUFIC_PEC, USUFIC_USU, USUFIC_PAS) VALUES ('$val01', '$val02', '$val03', '".$val04."', '".$val06."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
