@@ -364,8 +364,9 @@
         INNER JOIN ODTAUD e ON a.ODTFIC_COD = e.ODTAUD_ORC
 		
 		WHERE d.USUFIC_USU = '$val00'
-		
-		ORDER BY a.ODTFIC_NRO DESC";
+
+		GROUP BY a.ODTFIC_COD, c.ESTFIC_COD
+		ORDER BY a.ODTFIC_COD, c.ESTFIC_COD";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
