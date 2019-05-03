@@ -143,10 +143,14 @@
         $val01                      = $request->getParsedBody()['estado_dominio_codigo'];
 		$val02                      = strtoupper($request->getParsedBody()['dominio_nombre']);
 		$val03                      = strtoupper($request->getParsedBody()['dominio_valor']);
-		$val04                      = $request->getParsedBody()['dominio_observacion'];
+        $val04                      = $request->getParsedBody()['dominio_observacion'];
+
+        $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
+        $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
+        $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO DOMFIC (DOMFIC_EDC, DOMFIC_NOM, DOMFIC_VAL, DOMFIC_OBS) VALUES ('$val01', '".$val02."', '".$val03."', '".$val04."')";
+            $sql                    = "INSERT INTO DOMFIC (DOMFIC_EDC, DOMFIC_NOM, DOMFIC_VAL, DOMFIC_OBS, DOMFIC_AUS, DOMFIC_AFH, DOMFIC_AIP) VALUES ('$val01', '".$val02."', '".$val03."', '".$val04."', '".$aud01."', '".$aud02."', '".$aud03."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -171,10 +175,14 @@
         $val01                      = $request->getParsedBody()['estado_dominio_codigo'];
 		$val02                      = strtoupper($request->getParsedBody()['dominio_nombre']);
 		$val03                      = strtoupper($request->getParsedBody()['dominio_valor']);
-		$val04                      = $request->getParsedBody()['dominio_observacion'];
+        $val04                      = $request->getParsedBody()['dominio_observacion'];
+        
+        $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
+        $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
+        $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val00) &&isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE DOMFIC SET DOMFIC_EDC = '$val01', DOMFIC_NOM = '".$val02."', DOMFIC_OBS = '".$val04."' WHERE DOMFIC_COD = '$val00'";
+            $sql                    = "UPDATE DOMFIC SET DOMFIC_EDC = '$val01', DOMFIC_NOM = '".$val02."', DOMFIC_OBS = '".$val04."', DOMFIC_AUS = '".$aud01."', DOMFIC_AFH = '".$aud02."', DOMFIC_AIP = '".$aud03."' WHERE DOMFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -196,6 +204,10 @@
         require __DIR__.'/../src/connect.php';
         
         $val00                      = $request->getAttribute('codigo');
+
+        $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
+        $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
+        $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val00)) {
             $sql = "DELETE FROM DOMFIC WHERE DOMFIC_COD = '$val00'";
