@@ -210,13 +210,16 @@
         $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val00)) {
-            $sql = "DELETE FROM DOMFIC WHERE DOMFIC_COD = '$val00'";
+            $sql  = "UPDATE DOMFIC SET DOMFIC_AUS = '".$aud01."', DOMFIC_AFH = '".$aud02."', DOMFIC_AIP = '".$aud03."' WHERE DOMFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
-                header("Content-Type: application/json; charset=utf-8");
-                $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se elimino con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
-            } else {
-                header("Content-Type: application/json; charset=utf-8");
-                $json               = json_encode(array('code' => 204, 'status' => 'failure', 'message' => 'No se pudo eliminar'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                $sql1 = "DELETE FROM DOMFIC WHERE DOMFIC_COD = '$val00'";
+                if ($mysqli->query($sql1) === TRUE) {
+                    header("Content-Type: application/json; charset=utf-8");
+                    $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se elimino con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                } else {
+                    header("Content-Type: application/json; charset=utf-8");
+                    $json               = json_encode(array('code' => 204, 'status' => 'failure', 'message' => 'No se pudo eliminar'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                }
             }
         } else {
             header("Content-Type: application/json; charset=utf-8");

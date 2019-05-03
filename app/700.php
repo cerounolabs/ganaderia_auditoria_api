@@ -141,10 +141,14 @@
         $val02                      = $request->getParsedBody()['distrito_codigo'];
         $val03                      = strtoupper($request->getParsedBody()['establecimiento_nombre']);
         $val04                      = strtoupper($request->getParsedBody()['establecimiento_sigor']);
-		$val05                      = $request->getParsedBody()['establecimiento_observacion'];
+        $val05                      = $request->getParsedBody()['establecimiento_observacion'];
+        
+        $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
+        $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
+        $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
-            $sql                    = "INSERT INTO ESTFIC (ESTFIC_EEC, ESTFIC_DIC, ESTFIC_NOM, ESTFIC_SIC, ESTFIC_OBS) VALUES ('$val01', '$val02', '".$val03."', '".$val04."', '".$val05."')";
+            $sql                    = "INSERT INTO ESTFIC (ESTFIC_EEC, ESTFIC_DIC, ESTFIC_NOM, ESTFIC_SIC, ESTFIC_OBS, ESTFIC_AUS, ESTFIC_AFH, ESTFIC_AIP) VALUES ('$val01', '$val02', '".$val03."', '".$val04."', '".$val05."', '".$aud01."', '".$aud02."', '".$aud03."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -170,10 +174,14 @@
         $val02                      = $request->getParsedBody()['distrito_codigo'];
         $val03                      = strtoupper($request->getParsedBody()['establecimiento_nombre']);
         $val04                      = strtoupper($request->getParsedBody()['establecimiento_sigor']);
-		$val05                      = $request->getParsedBody()['establecimiento_observacion'];
+        $val05                      = $request->getParsedBody()['establecimiento_observacion'];
+        
+        $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
+        $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
+        $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
-            $sql                    = "UPDATE ESTFIC SET ESTFIC_EEC = '$val01', ESTFIC_DIC = '$val02', ESTFIC_NOM = '".$val03."', ESTFIC_SIC = '".$val04."', ESTFIC_OBS = '".$val05."' WHERE ESTFIC_COD = '$val00'";
+            $sql                    = "UPDATE ESTFIC SET ESTFIC_EEC = '$val01', ESTFIC_DIC = '$val02', ESTFIC_NOM = '".$val03."', ESTFIC_SIC = '".$val04."', ESTFIC_OBS = '".$val05."', ESTFIC_AUS = '".$aud01."', ESTFIC_AFH = '".$aud02."', ESTFIC_AIP = '".$aud03."' WHERE ESTFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -195,15 +203,22 @@
         require __DIR__.'/../src/connect.php';
         
         $val00                      = $request->getAttribute('codigo');
+
+        $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
+        $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
+        $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val00)) {
-            $sql = "DELETE FROM ESTFIC WHERE ESTFIC_COD = '$val00'";
+            $sql = "UPDATE ESTFIC SET ESTFIC_AUS = '".$aud01."', ESTFIC_AFH = '".$aud02."', ESTFIC_AIP = '".$aud03."' WHERE ESTFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
-                header("Content-Type: application/json; charset=utf-8");
-                $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se elimino con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
-            } else {
-                header("Content-Type: application/json; charset=utf-8");
-                $json               = json_encode(array('code' => 204, 'status' => 'failure', 'message' => 'No se pudo eliminar'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                $sql1 = "DELETE FROM ESTFIC WHERE ESTFIC_COD = '$val00'";
+                if ($mysqli->query($sql1) === TRUE) {
+                    header("Content-Type: application/json; charset=utf-8");
+                    $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se elimino con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                } else {
+                    header("Content-Type: application/json; charset=utf-8");
+                    $json               = json_encode(array('code' => 204, 'status' => 'failure', 'message' => 'No se pudo eliminar'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+                }
             }
         } else {
             header("Content-Type: application/json; charset=utf-8");
