@@ -20,13 +20,13 @@
 		c.DOMFIC_NOM		    AS		dominio_estado_actual,
 		a.DOMFIC_ANOM_NEW		AS		dominio_nombre_actual,
 		a.DOMFIC_AVAL_NEW		AS		dominio_valor_actual,
-        a.DOMFIC_AOBS_NEW		AS		dominio_observacion_actual,
+        a.DOMFIC_AOBS_NEW		AS		dominio_observacion_actual
 		
 		FROM DOMFIC_A a
 		LEFT JOIN DOMFIC b ON a.DOMFIC_AEDC_OLD = b.DOMFIC_COD
         LEFT JOIN DOMFIC c ON a.DOMFIC_AEDC_NEW = c.DOMFIC_COD
 		
-		ORDER BY a.DOMFIC_NOM";
+		ORDER BY a.DOMFIC_ACOD";
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
