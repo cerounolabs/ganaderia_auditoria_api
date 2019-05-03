@@ -200,24 +200,34 @@
         
         $val00                      = $request->getAttribute('codigo');
         
-        if ($val00 == 1) {
+        if ($val00 == 'ADMIN') {
             $sql                        = "SELECT
-            d.USUFIC_COD		AS		usuario_codigo,
-            d.USUFIC_USU		AS		usuario_nombre,
-            c.ESTFIC_COD		AS		establecimiento_codigo,
-            c.ESTFIC_NOM		AS		establecimiento_nombre,
-            c.ESTFIC_SIC		AS		establecimiento_sigor,
-            c.ESTFIC_OBS		AS		establecimiento_observacion,
-            b.DOMFIC_COD		AS		estado_establecimiento_usuario_codigo,
-            b.DOMFIC_NOM		AS		estado_establecimiento_usuario_nombre,
-            a.ESTUSU_COD		AS		establecimiento_usuario_codigo
-            
-            FROM ESTUSU a
-            INNER JOIN DOMFIC b ON a.ESTUSU_EUC = b.DOMFIC_COD
-            INNER JOIN ESTFIC c ON a.ESTUSU_ESC = c.ESTFIC_COD
-            INNER JOIN USUFIC d ON a.ESTUSU_USC = d.USUFIC_COD
-            
-            ORDER BY a.ESTUSU_COD";
+            a.ESTFIC_COD		AS		establecimiento_codigo,
+            a.ESTFIC_NOM		AS		establecimiento_nombre,
+            a.ESTFIC_SIC		AS		establecimiento_sigor,
+            a.ESTFIC_OBS		AS		establecimiento_observacion
+
+            FROM ESTFIC 
+
+            ORDER BY a.ESTFIC_COD";
+
+            if ($query = $mysqli->query($sql)) {
+                while($row = $query->fetch_assoc()) {
+                    $detalle			= array(
+                        'estado_establecimiento_usuario_codigo'	        => 1,
+                        'estado_establecimiento_usuario_nombre'	        => 'HABILITADO',
+                        'establecimiento_codigo'	                    => $row['establecimiento_codigo'],
+                        'establecimiento_nombre'	                    => $row['establecimiento_nombre'],
+                        'establecimiento_sigor'		                    => $row['establecimiento_sigor'],
+                        'establecimiento_observacion'		            => $row['establecimiento_observacion'],
+                        'usuario_codigo'		                        => 1,
+                        'usuario_nombre'		                        => 'ADMIN',
+                        'establecimiento_usuario_codigo'	            => 0
+                    );	
+                    $result[]           = $detalle;
+                }
+                $query->free();
+            }
         } else {
             $sql                        = "SELECT
             d.USUFIC_COD		AS		usuario_codigo,
@@ -237,25 +247,24 @@
             
             WHERE d.USUFIC_USU = '$val00'
             ORDER BY a.ESTUSU_COD";
-        }
 
-		
-        if ($query = $mysqli->query($sql)) {
-            while($row = $query->fetch_assoc()) {
-                $detalle			= array(
-					'estado_establecimiento_usuario_codigo'	        => $row['estado_establecimiento_usuario_codigo'],
-                    'estado_establecimiento_usuario_nombre'	        => $row['estado_establecimiento_usuario_nombre'],
-					'establecimiento_codigo'	                    => $row['establecimiento_codigo'],
-					'establecimiento_nombre'	                    => $row['establecimiento_nombre'],
-                    'establecimiento_sigor'		                    => $row['establecimiento_sigor'],
-                    'establecimiento_observacion'		            => $row['establecimiento_observacion'],
-                    'usuario_codigo'		                        => $row['usuario_codigo'],
-                    'usuario_nombre'		                        => $row['usuario_nombre'],
-                    'establecimiento_usuario_codigo'	            => $row['establecimiento_usuario_codigo']
-				);	
-                $result[]           = $detalle;
+            if ($query = $mysqli->query($sql)) {
+                while($row = $query->fetch_assoc()) {
+                    $detalle			= array(
+                        'estado_establecimiento_usuario_codigo'	        => $row['estado_establecimiento_usuario_codigo'],
+                        'estado_establecimiento_usuario_nombre'	        => $row['estado_establecimiento_usuario_nombre'],
+                        'establecimiento_codigo'	                    => $row['establecimiento_codigo'],
+                        'establecimiento_nombre'	                    => $row['establecimiento_nombre'],
+                        'establecimiento_sigor'		                    => $row['establecimiento_sigor'],
+                        'establecimiento_observacion'		            => $row['establecimiento_observacion'],
+                        'usuario_codigo'		                        => $row['usuario_codigo'],
+                        'usuario_nombre'		                        => $row['usuario_nombre'],
+                        'establecimiento_usuario_codigo'	            => $row['establecimiento_usuario_codigo']
+                    );	
+                    $result[]           = $detalle;
+                }
+                $query->free();
             }
-			$query->free();
         }
         
         $mysqli->close();
