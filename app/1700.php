@@ -207,7 +207,7 @@
             a.ESTFIC_SIC		AS		establecimiento_sigor,
             a.ESTFIC_OBS		AS		establecimiento_observacion
 
-            FROM ESTFIC 
+            FROM ESTFIC a
 
             ORDER BY a.ESTFIC_COD";
 
