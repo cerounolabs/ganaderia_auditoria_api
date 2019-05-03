@@ -22,3 +22,5 @@
 	require __DIR__.'/../app/1200.php';                            //TABLA ODTAUD ORDEN DE TRABAJO AUDITORIA
 
 	require __DIR__.'/../app/1300.php';                            //TABLA PERFIC PERSONA
+
+	require __DIR__.'/../app/1800.php';                            //TABLA DOMFIC_A AUDITORIA DOMINIO
