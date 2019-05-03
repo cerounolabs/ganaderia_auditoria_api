@@ -198,9 +198,9 @@
     $app->get('/api/v1/1700/usuario/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
         
-        $val00                      = $request->getAttribute('codigo');
+        $val00                      = strtoupper($request->getAttribute('codigo'));
         
-        if ($val00 == 'ADMIN') {
+        if (($val00 == 'ADMIN') || ($val00 == 'admin')) {
             $sql                        = "SELECT
             a.ESTFIC_COD		AS		establecimiento_codigo,
             a.ESTFIC_NOM		AS		establecimiento_nombre,
