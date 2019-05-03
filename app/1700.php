@@ -198,25 +198,47 @@
     $app->get('/api/v1/1700/usuario/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
         
-		$val00                      = $request->getAttribute('codigo');
-		$sql                        = "SELECT
-        d.USUFIC_COD		AS		usuario_codigo,
-        d.USUFIC_USU		AS		usuario_nombre,
-        c.ESTFIC_COD		AS		establecimiento_codigo,
-		c.ESTFIC_NOM		AS		establecimiento_nombre,
-		c.ESTFIC_SIC		AS		establecimiento_sigor,
-        c.ESTFIC_OBS		AS		establecimiento_observacion,
-		b.DOMFIC_COD		AS		estado_establecimiento_usuario_codigo,
-		b.DOMFIC_NOM		AS		estado_establecimiento_usuario_nombre,
-        a.ESTUSU_COD		AS		establecimiento_usuario_codigo
-		
-		FROM ESTUSU a
-        INNER JOIN DOMFIC b ON a.ESTUSU_EUC = b.DOMFIC_COD
-		INNER JOIN ESTFIC c ON a.ESTUSU_ESC = c.ESTFIC_COD
-		INNER JOIN USUFIC d ON a.ESTUSU_USC = d.USUFIC_COD
-		
-		WHERE d.USUFIC_USU = '$val00'
-		ORDER BY a.ESTUSU_COD";
+        $val00                      = $request->getAttribute('codigo');
+        
+        if ($val00 == 1) {
+            $sql                        = "SELECT
+            d.USUFIC_COD		AS		usuario_codigo,
+            d.USUFIC_USU		AS		usuario_nombre,
+            c.ESTFIC_COD		AS		establecimiento_codigo,
+            c.ESTFIC_NOM		AS		establecimiento_nombre,
+            c.ESTFIC_SIC		AS		establecimiento_sigor,
+            c.ESTFIC_OBS		AS		establecimiento_observacion,
+            b.DOMFIC_COD		AS		estado_establecimiento_usuario_codigo,
+            b.DOMFIC_NOM		AS		estado_establecimiento_usuario_nombre,
+            a.ESTUSU_COD		AS		establecimiento_usuario_codigo
+            
+            FROM ESTUSU a
+            INNER JOIN DOMFIC b ON a.ESTUSU_EUC = b.DOMFIC_COD
+            INNER JOIN ESTFIC c ON a.ESTUSU_ESC = c.ESTFIC_COD
+            INNER JOIN USUFIC d ON a.ESTUSU_USC = d.USUFIC_COD
+            
+            ORDER BY a.ESTUSU_COD";
+        } else {
+            $sql                        = "SELECT
+            d.USUFIC_COD		AS		usuario_codigo,
+            d.USUFIC_USU		AS		usuario_nombre,
+            c.ESTFIC_COD		AS		establecimiento_codigo,
+            c.ESTFIC_NOM		AS		establecimiento_nombre,
+            c.ESTFIC_SIC		AS		establecimiento_sigor,
+            c.ESTFIC_OBS		AS		establecimiento_observacion,
+            b.DOMFIC_COD		AS		estado_establecimiento_usuario_codigo,
+            b.DOMFIC_NOM		AS		estado_establecimiento_usuario_nombre,
+            a.ESTUSU_COD		AS		establecimiento_usuario_codigo
+            
+            FROM ESTUSU a
+            INNER JOIN DOMFIC b ON a.ESTUSU_EUC = b.DOMFIC_COD
+            INNER JOIN ESTFIC c ON a.ESTUSU_ESC = c.ESTFIC_COD
+            INNER JOIN USUFIC d ON a.ESTUSU_USC = d.USUFIC_COD
+            
+            WHERE d.USUFIC_USU = '$val00'
+            ORDER BY a.ESTUSU_COD";
+        }
+
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
