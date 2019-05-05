@@ -181,7 +181,7 @@
         $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
-            $sql                    = "UPDATE ESTFIC SET ESTFIC_EEC = '$val01', ESTFIC_DIC = '$val02', ESTFIC_NOM = '".$val03."', ESTFIC_SIC = '".$val04."', ESTFIC_OBS = '".$val05."', ESTFIC_AUS = '".$aud01."', ESTFIC_AFH = '".$aud02."', ESTFIC_AIP = '".$aud03."' WHERE ESTFIC_COD = '$val00'";
+            $sql                    = "UPDATE ESTFIC SET ESTFIC_EEC = '$val01', ESTFIC_DIC = '$val02', ESTFIC_NOM = '".$val03."', ESTFIC_SIC = '".$val04."', ESTFIC_OBS = '".$val05."' WHERE ESTFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
