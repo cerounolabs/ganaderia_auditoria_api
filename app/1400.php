@@ -3,6 +3,8 @@
         require __DIR__.'/../src/connect.php';
         
 		$sql                        = "SELECT
+        e.DOMFIC_COD		AS		cargo_codigo,
+		e.DOMFIC_NOM		AS		cargo_nombre,
         d.PERFIC_COD		AS		persona_codigo,
         d.PERFIC_NOM		AS		persona_nombre,
 		d.PERFIC_APE		AS		persona_apellido,
@@ -24,6 +26,7 @@
         INNER JOIN DOMFIC b ON a.ESTPRO_EPC = b.DOMFIC_COD
 		INNER JOIN ESTFIC c ON a.ESTPRO_ESC = c.ESTFIC_COD
 		INNER JOIN PERFIC d ON a.ESTPRO_PRC = d.PERFIC_COD
+        INNER JOIN DOMFIC e ON a.ESTPRO_CAC = e.DOMFIC_COD
 		
 		ORDER BY c.ESTFIC_NOM, d.PERFIC_APE, d.PERFIC_NOM";
 		
@@ -52,7 +55,9 @@
                     'persona_telefono'	                                        => $row['persona_telefono'],
                     'persona_correo_electronico'	                            => $row['persona_correo_electronico'],
                     'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
-                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca']
+                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca'],
+                    'cargo_codigo'	                                            => $row['cargo_codigo'],
+					'cargo_nombre'	                                            => $row['establecimiento_nombre']
 				);	
                 $result[]           = $detalle;
             }
@@ -82,7 +87,9 @@
                 'persona_telefono'	                                        => '',
                 'persona_correo_electronico'	                            => '',
                 'establecimiento_propietario_codigo'	                    => '',
-                'establecimiento_propietario_marca'	                        => ''
+                'establecimiento_propietario_marca'	                        => '',
+                'cargo_codigo'	                                            => '',
+				'cargo_nombre'	                                            => ''
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -97,6 +104,8 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
+        e.DOMFIC_COD		AS		cargo_codigo,
+		e.DOMFIC_NOM		AS		cargo_nombre,
         d.PERFIC_COD		AS		persona_codigo,
         d.PERFIC_NOM		AS		persona_nombre,
 		d.PERFIC_APE		AS		persona_apellido,
@@ -118,6 +127,7 @@
         INNER JOIN DOMFIC b ON a.ESTPRO_EPC = b.DOMFIC_COD
 		INNER JOIN ESTFIC c ON a.ESTPRO_ESC = c.ESTFIC_COD
 		INNER JOIN PERFIC d ON a.ESTPRO_PRC = d.PERFIC_COD
+        INNER JOIN DOMFIC e ON a.ESTPRO_CAC = e.DOMFIC_COD
 		
 		WHERE a.ESTPRO_COD = '$val00'
 		ORDER BY c.ESTFIC_NOM, d.PERFIC_APE, d.PERFIC_NOM";
@@ -147,7 +157,9 @@
                     'persona_telefono'	                                        => $row['persona_telefono'],
                     'persona_correo_electronico'	                            => $row['persona_correo_electronico'],
                     'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
-                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca']
+                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca'],
+                    'cargo_codigo'	                                            => $row['cargo_codigo'],
+					'cargo_nombre'	                                            => $row['establecimiento_nombre']
 				);
                 $result[]           = $detalle;
             }
@@ -177,7 +189,9 @@
                 'persona_telefono'	                                        => '',
                 'persona_correo_electronico'	                            => '',
                 'establecimiento_propietario_codigo'	                    => '',
-                'establecimiento_propietario_marca'	                        => ''
+                'establecimiento_propietario_marca'	                        => '',
+                'cargo_codigo'	                                            => '',
+				'cargo_nombre'	                                            => ''
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -192,7 +206,9 @@
         
 		$val00                      = $request->getAttribute('codigo');
 		$sql                        = "SELECT
-		d.PERFIC_COD		AS		persona_codigo,
+        e.DOMFIC_COD		AS		cargo_codigo,
+		e.DOMFIC_NOM		AS		cargo_nombre,
+        d.PERFIC_COD		AS		persona_codigo,
         d.PERFIC_NOM		AS		persona_nombre,
 		d.PERFIC_APE		AS		persona_apellido,
         d.PERFIC_RAZ		AS		persona_razon_social,
@@ -213,6 +229,7 @@
         INNER JOIN DOMFIC b ON a.ESTPRO_EPC = b.DOMFIC_COD
 		INNER JOIN ESTFIC c ON a.ESTPRO_ESC = c.ESTFIC_COD
 		INNER JOIN PERFIC d ON a.ESTPRO_PRC = d.PERFIC_COD
+        INNER JOIN DOMFIC e ON a.ESTPRO_CAC = e.DOMFIC_COD
 		
 		WHERE c.ESTFIC_COD = '$val00'
 		ORDER BY c.ESTFIC_NOM, d.PERFIC_APE, d.PERFIC_NOM";
@@ -242,7 +259,9 @@
                     'persona_telefono'	                                        => $row['persona_telefono'],
                     'persona_correo_electronico'	                            => $row['persona_correo_electronico'],
                     'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
-                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca']
+                    'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca'],
+                    'cargo_codigo'	                                            => $row['cargo_codigo'],
+					'cargo_nombre'	                                            => $row['establecimiento_nombre']
 				);
                 $result[]           = $detalle;
             }
@@ -272,7 +291,9 @@
                 'persona_telefono'	                                        => '',
                 'persona_correo_electronico'	                            => '',
                 'establecimiento_propietario_codigo'	                    => '',
-                'establecimiento_propietario_marca'	                        => ''
+                'establecimiento_propietario_marca'	                        => '',
+                'cargo_codigo'	                                            => '',
+				'cargo_nombre'	                                            => ''
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
@@ -288,10 +309,11 @@
 		$val01                      = $request->getParsedBody()['estado_establecimiento_propietario_codigo'];
         $val02                      = $request->getParsedBody()['establecimiento_codigo'];
         $val03                      = $request->getParsedBody()['persona_codigo'];
-        $val04                      = strtoupper($request->getParsedBody()['estado_establecimiento_propietario_marca']);
+        $val04                      = $request->getParsedBody()['cargo_codigo'];
+        $val05                      = strtoupper($request->getParsedBody()['estado_establecimiento_propietario_marca']);
         
-        if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
-            $sql                    = "INSERT INTO ESTPRO (ESTPRO_EPC, ESTPRO_ESC, ESTPRO_PRC, ESTPRO_MAR) VALUES ('$val01', '$val02', '$val03', '".$val04."')";
+        if (isset($val01) && isset($val02) && isset($val03) && isset($val04) && isset($val05)) {
+            $sql                    = "INSERT INTO ESTPRO (ESTPRO_EPC, ESTPRO_ESC, ESTPRO_PRC, ESTPRO_CAC, ESTPRO_MAR) VALUES ('$val01', '$val02', '$val03', '$val04', '".$val05."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -318,8 +340,8 @@
         $val03                      = $request->getParsedBody()['persona_codigo'];
         $val04                      = strtoupper($request->getParsedBody()['estado_establecimiento_propietario_marca']);
         
-        if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
-            $sql                    = "UPDATE ESTPRO SET ESTPRO_EPC = '$val01', ESTPRO_ESC = '$val02', ESTPRO_PRC = '$val03', ESTPRO_MAR = '".$val04."' WHERE ESTPRO_COD = '$val00'";
+        if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04) && isset($val05)) {
+            $sql                    = "UPDATE ESTPRO SET ESTPRO_EPC = '$val01', ESTPRO_ESC = '$val02', ESTPRO_PRC = '$val03', ESTPRO_CAC = '$val04', ESTPRO_MAR = '".$val05."' WHERE ESTPRO_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
