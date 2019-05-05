@@ -202,12 +202,15 @@
         
         if (($val00 == 'ADMIN') || ($val00 == 'admin')) {
             $sql                        = "SELECT
+            b.PAIDIS_COD		AS		distrito_codigo,
+		    b.PAIDIS_NOM		AS		distrito_nombre,
             a.ESTFIC_COD		AS		establecimiento_codigo,
             a.ESTFIC_NOM		AS		establecimiento_nombre,
             a.ESTFIC_SIC		AS		establecimiento_sigor,
             a.ESTFIC_OBS		AS		establecimiento_observacion
 
             FROM ESTFIC a
+            INNER JOIN PAIDIS b ON a.ESTFIC_DIC = b.PAIDIS_COD
 
             ORDER BY a.ESTFIC_COD";
 
@@ -222,7 +225,9 @@
                         'establecimiento_observacion'		            => $row['establecimiento_observacion'],
                         'usuario_codigo'		                        => 1,
                         'usuario_nombre'		                        => 'ADMIN',
-                        'establecimiento_usuario_codigo'	            => 0
+                        'establecimiento_usuario_codigo'	            => 0,
+                        'distrito_codigo'			                    => $row['distrito_codigo'],
+					    'distrito_nombre'			                    => $row['distrito_nombre']
                     );	
                     $result[]           = $detalle;
                 }
@@ -230,6 +235,8 @@
             }
         } else {
             $sql                        = "SELECT
+            e.PAIDIS_COD		AS		distrito_codigo,
+		    e.PAIDIS_NOM		AS		distrito_nombre,
             d.USUFIC_COD		AS		usuario_codigo,
             d.USUFIC_USU		AS		usuario_nombre,
             c.ESTFIC_COD		AS		establecimiento_codigo,
@@ -244,6 +251,7 @@
             INNER JOIN DOMFIC b ON a.ESTUSU_EUC = b.DOMFIC_COD
             INNER JOIN ESTFIC c ON a.ESTUSU_ESC = c.ESTFIC_COD
             INNER JOIN USUFIC d ON a.ESTUSU_USC = d.USUFIC_COD
+            INNER JOIN PAIDIS e ON a.ESTFIC_DIC = b.PAIDIS_COD
             
             WHERE d.USUFIC_USU = '$val00'
             ORDER BY a.ESTUSU_COD";
@@ -259,7 +267,9 @@
                         'establecimiento_observacion'		            => $row['establecimiento_observacion'],
                         'usuario_codigo'		                        => $row['usuario_codigo'],
                         'usuario_nombre'		                        => $row['usuario_nombre'],
-                        'establecimiento_usuario_codigo'	            => $row['establecimiento_usuario_codigo']
+                        'establecimiento_usuario_codigo'	            => $row['establecimiento_usuario_codigo'],
+                        'distrito_codigo'			                    => $row['distrito_codigo'],
+					    'distrito_nombre'			                    => $row['distrito_nombre']
                     );	
                     $result[]           = $detalle;
                 }
@@ -282,7 +292,9 @@
                 'establecimiento_observacion'		            => '',
                 'usuario_codigo'		                        => '',
                 'usuario_nombre'		                        => '',
-                'establecimiento_usuario_codigo'	            => ''
+                'establecimiento_usuario_codigo'	            => '',
+                'distrito_codigo'                               => '',
+                'distrito_nombre'                               => ''
             );
 
             header("Content-Type: application/json; charset=utf-8");
