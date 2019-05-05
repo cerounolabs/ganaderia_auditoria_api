@@ -57,7 +57,7 @@
                     'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
                     'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca'],
                     'cargo_codigo'	                                            => $row['cargo_codigo'],
-					'cargo_nombre'	                                            => $row['establecimiento_nombre']
+					'cargo_nombre'	                                            => $row['cargo_nombre']
 				);	
                 $result[]           = $detalle;
             }
@@ -159,7 +159,7 @@
                     'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
                     'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca'],
                     'cargo_codigo'	                                            => $row['cargo_codigo'],
-					'cargo_nombre'	                                            => $row['establecimiento_nombre']
+					'cargo_nombre'	                                            => $row['cargo_nombre']
 				);
                 $result[]           = $detalle;
             }
@@ -261,7 +261,7 @@
                     'establecimiento_propietario_codigo'	                    => $row['establecimiento_propietario_codigo'],
                     'establecimiento_propietario_marca'	                        => $row['establecimiento_propietario_marca'],
                     'cargo_codigo'	                                            => $row['cargo_codigo'],
-					'cargo_nombre'	                                            => $row['establecimiento_nombre']
+					'cargo_nombre'	                                            => $row['cargo_nombre']
 				);
                 $result[]           = $detalle;
             }
@@ -338,7 +338,8 @@
 		$val01                      = $request->getParsedBody()['estado_establecimiento_propietario_codigo'];
         $val02                      = $request->getParsedBody()['establecimiento_codigo'];
         $val03                      = $request->getParsedBody()['persona_codigo'];
-        $val04                      = strtoupper($request->getParsedBody()['estado_establecimiento_propietario_marca']);
+        $val04                      = $request->getParsedBody()['cargo_codigo'];
+        $val05                      = strtoupper($request->getParsedBody()['estado_establecimiento_propietario_marca']);
         
         if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04) && isset($val05)) {
             $sql                    = "UPDATE ESTPRO SET ESTPRO_EPC = '$val01', ESTPRO_ESC = '$val02', ESTPRO_PRC = '$val03', ESTPRO_CAC = '$val04', ESTPRO_MAR = '".$val05."' WHERE ESTPRO_COD = '$val00'";
