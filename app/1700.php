@@ -207,7 +207,8 @@
             a.ESTFIC_COD		AS		establecimiento_codigo,
             a.ESTFIC_NOM		AS		establecimiento_nombre,
             a.ESTFIC_SIC		AS		establecimiento_sigor,
-            a.ESTFIC_OBS		AS		establecimiento_observacion
+            a.ESTFIC_OBS		AS		establecimiento_observacion,
+            (SELECT COUNT(*) FROM ODTFIC c WHERE c.ODTFIC_ESC = a.ESTFIC_COD) AS ot_cantidad
 
             FROM ESTFIC a
             INNER JOIN PAIDIS b ON a.ESTFIC_DIC = b.PAIDIS_COD
@@ -227,7 +228,8 @@
                         'usuario_nombre'		                        => 'ADMIN',
                         'establecimiento_usuario_codigo'	            => 0,
                         'distrito_codigo'			                    => $row['distrito_codigo'],
-					    'distrito_nombre'			                    => $row['distrito_nombre']
+                        'distrito_nombre'			                    => $row['distrito_nombre'],
+                        'ot_cantidad'			                        => $row['ot_cantidad']
                     );	
                     $result[]           = $detalle;
                 }
@@ -245,13 +247,14 @@
             c.ESTFIC_OBS		AS		establecimiento_observacion,
             b.DOMFIC_COD		AS		estado_establecimiento_usuario_codigo,
             b.DOMFIC_NOM		AS		estado_establecimiento_usuario_nombre,
-            a.ESTUSU_COD		AS		establecimiento_usuario_codigo
+            a.ESTUSU_COD		AS		establecimiento_usuario_codigo,
+            (SELECT COUNT(*) FROM ODTFIC f WHERE f.ODTFIC_ESC = c.ESTFIC_COD) AS ot_cantidad
             
             FROM ESTUSU a
             INNER JOIN DOMFIC b ON a.ESTUSU_EUC = b.DOMFIC_COD
             INNER JOIN ESTFIC c ON a.ESTUSU_ESC = c.ESTFIC_COD
             INNER JOIN USUFIC d ON a.ESTUSU_USC = d.USUFIC_COD
-            INNER JOIN PAIDIS e ON a.ESTFIC_DIC = b.PAIDIS_COD
+            INNER JOIN PAIDIS e ON c.ESTFIC_DIC = e.PAIDIS_COD
             
             WHERE d.USUFIC_USU = '$val00'
             ORDER BY a.ESTUSU_COD";
@@ -269,7 +272,8 @@
                         'usuario_nombre'		                        => $row['usuario_nombre'],
                         'establecimiento_usuario_codigo'	            => $row['establecimiento_usuario_codigo'],
                         'distrito_codigo'			                    => $row['distrito_codigo'],
-					    'distrito_nombre'			                    => $row['distrito_nombre']
+                        'distrito_nombre'			                    => $row['distrito_nombre'],
+                        'ot_cantidad'			                        => $row['ot_cantidad']
                     );	
                     $result[]           = $detalle;
                 }
@@ -294,7 +298,8 @@
                 'usuario_nombre'		                        => '',
                 'establecimiento_usuario_codigo'	            => '',
                 'distrito_codigo'                               => '',
-                'distrito_nombre'                               => ''
+                'distrito_nombre'                               => '',
+                'ot_cantidad'			                        => ''
             );
 
             header("Content-Type: application/json; charset=utf-8");
