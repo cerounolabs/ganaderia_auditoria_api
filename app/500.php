@@ -9,6 +9,7 @@
 		a.DOMFIC_COD		AS		dominio_codigo, 
 		a.DOMFIC_NOM		AS		dominio_nombre,
 		a.DOMFIC_VAL		AS		dominio_valor,
+        a.DOMFIC_BUS		AS		dominio_busqueda,
 		a.DOMFIC_OBS		AS		dominio_observacion
 		
 		FROM DOMFIC a
@@ -23,7 +24,8 @@
 					'estado_dominio_nombre'			    => $row['estado_dominio_nombre'],
 					'dominio_codigo'					=> $row['dominio_codigo'], 
 					'dominio_nombre'					=> $row['dominio_nombre'],
-					'dominio_valor'					    => $row['dominio_valor'],
+                    'dominio_valor'					    => $row['dominio_valor'],
+                    'dominio_busqueda'			        => $row['dominio_busqueda'],
 					'dominio_observacion'				=> $row['dominio_observacion']
 				);	
                 $result[]           = $detalle;
@@ -54,6 +56,7 @@
 		a.DOMFIC_COD		AS		dominio_codigo, 
 		a.DOMFIC_NOM		AS		dominio_nombre,
 		a.DOMFIC_VAL		AS		dominio_valor,
+        a.DOMFIC_BUS		AS		dominio_busqueda,
 		a.DOMFIC_OBS		AS		dominio_observacion
 		
 		FROM DOMFIC a
@@ -69,7 +72,8 @@
 					'estado_dominio_nombre'			    => $row['estado_dominio_nombre'],
 					'dominio_codigo'					=> $row['dominio_codigo'], 
 					'dominio_nombre'					=> $row['dominio_nombre'],
-					'dominio_valor'					    => $row['dominio_valor'],
+                    'dominio_valor'					    => $row['dominio_valor'],
+                    'dominio_busqueda'			        => $row['dominio_busqueda'],
 					'dominio_observacion'				=> $row['dominio_observacion']
 				);		
                 $result[]           = $detalle;
@@ -100,6 +104,7 @@
 		a.DOMFIC_COD		AS		dominio_codigo, 
 		a.DOMFIC_NOM		AS		dominio_nombre,
 		a.DOMFIC_VAL		AS		dominio_valor,
+        a.DOMFIC_BUS		AS		dominio_busqueda,
 		a.DOMFIC_OBS		AS		dominio_observacion
 		
 		FROM DOMFIC a
@@ -115,7 +120,8 @@
 					'estado_dominio_nombre'			    => $row['estado_dominio_nombre'],
 					'dominio_codigo'					=> $row['dominio_codigo'], 
 					'dominio_nombre'					=> $row['dominio_nombre'],
-					'dominio_valor'					    => $row['dominio_valor'],
+                    'dominio_valor'					    => $row['dominio_valor'],
+                    'dominio_busqueda'			        => $row['dominio_busqueda'],
 					'dominio_observacion'				=> $row['dominio_observacion']
 				);	
                 $result[]           = $detalle;
@@ -142,15 +148,16 @@
         $val00                      = $request->getAttribute('codigo');
         $val01                      = $request->getParsedBody()['estado_dominio_codigo'];
 		$val02                      = strtoupper($request->getParsedBody()['dominio_nombre']);
-		$val03                      = strtoupper($request->getParsedBody()['dominio_valor']);
-        $val04                      = $request->getParsedBody()['dominio_observacion'];
+        $val03                      = strtoupper($request->getParsedBody()['dominio_valor']);
+        $val04                      = strtoupper($request->getParsedBody()['dominio_busqueda']);
+        $val05                      = $request->getParsedBody()['dominio_observacion'];
 
         $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
         $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
         $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "INSERT INTO DOMFIC (DOMFIC_EDC, DOMFIC_NOM, DOMFIC_VAL, DOMFIC_OBS, DOMFIC_AUS, DOMFIC_AFH, DOMFIC_AIP) VALUES ('$val01', '".$val02."', '".$val03."', '".$val04."', '".$aud01."', '".$aud02."', '".$aud03."')";
+            $sql                    = "INSERT INTO DOMFIC (DOMFIC_EDC, DOMFIC_NOM, DOMFIC_VAL, DOMFIC_BUS, DOMFIC_OBS, DOMFIC_AUS, DOMFIC_AFH, DOMFIC_AIP) VALUES ('$val01', '".$val02."', '".$val03."', '".$val04."', '".$val05."', '".$aud01."', '".$aud02."', '".$aud03."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -174,15 +181,16 @@
         $val00                      = $request->getAttribute('codigo');
         $val01                      = $request->getParsedBody()['estado_dominio_codigo'];
 		$val02                      = strtoupper($request->getParsedBody()['dominio_nombre']);
-		$val03                      = strtoupper($request->getParsedBody()['dominio_valor']);
-        $val04                      = $request->getParsedBody()['dominio_observacion'];
+        $val03                      = strtoupper($request->getParsedBody()['dominio_valor']);
+        $val04                      = strtoupper($request->getParsedBody()['dominio_busqueda']);
+        $val05                      = $request->getParsedBody()['dominio_observacion'];
         
         $aud01                      = strtoupper($request->getParsedBody()['auditoria_usuario']);
         $aud02                      = strtoupper($request->getParsedBody()['auditoria_fechahora']);
         $aud03                      = strtoupper($request->getParsedBody()['auditoria_ip']);
         
         if (isset($val00) &&isset($val01) && isset($val02) && isset($val03)) {
-            $sql                    = "UPDATE DOMFIC SET DOMFIC_EDC = '$val01', DOMFIC_NOM = '".$val02."', DOMFIC_OBS = '".$val04."', DOMFIC_AUS = '".$aud01."', DOMFIC_AFH = '".$aud02."', DOMFIC_AIP = '".$aud03."' WHERE DOMFIC_COD = '$val00'";
+            $sql                    = "UPDATE DOMFIC SET DOMFIC_EDC = '$val01', DOMFIC_NOM = '".$val02."', DOMFIC_BUS = '".$val04."', DOMFIC_OBS = '".$val05."', DOMFIC_AUS = '".$aud01."', DOMFIC_AFH = '".$aud02."', DOMFIC_AIP = '".$aud03."' WHERE DOMFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
