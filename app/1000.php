@@ -13,6 +13,8 @@
 		a.ODTFIC_NRO		AS		ot_numero, 
 		a.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
         a.ODTFIC_FFT		AS		ot_fecha_final_trabajo,
+        a.ODTFIC_ADM        AS      ot_administrador,
+        a.ODTFIC_AUD        AS      ot_auditor,
         a.ODTFIC_OBS		AS		ot_observacion
 		
 		FROM ODTFIC a
@@ -46,6 +48,8 @@
                     'ot_fecha_inicio_trabajo_2'	            => $fecha1,
                     'ot_fecha_final_trabajo'	            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	            => $fecha2,
+                    'ot_administrador'	                    => $row['ot_administrador'],
+                    'ot_auditor'	                        => $row['ot_auditor'],
                     'ot_observacion'	                    => $row['ot_observacion']
 				);	
                 $result[]           = $detalle;
@@ -72,6 +76,8 @@
                 'ot_fecha_inicio_trabajo_2'	            => "",
                 'ot_fecha_final_trabajo'	            => "",
                 'ot_fecha_final_trabajo_2'	            => "",
+                'ot_administrador'	                    => "",
+                'ot_auditor'	                        => "",
                 'ot_observacion'	                    => ""
             );	
             $result[]   = $detalle;
@@ -97,6 +103,8 @@
 		a.ODTFIC_NRO		AS		ot_numero, 
 		a.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
         a.ODTFIC_FFT		AS		ot_fecha_final_trabajo,
+        a.ODTFIC_ADM        AS      ot_administrador,
+        a.ODTFIC_AUD        AS      ot_auditor,
         a.ODTFIC_OBS		AS		ot_observacion
 		
 		FROM ODTFIC a
@@ -131,6 +139,8 @@
                     'ot_fecha_inicio_trabajo_2'	            => $fecha1,
                     'ot_fecha_final_trabajo'	            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	            => $fecha2,
+                    'ot_administrador'	                    => $row['ot_administrador'],
+                    'ot_auditor'	                        => $row['ot_auditor'],
                     'ot_observacion'	                    => $row['ot_observacion']
 				);	
                 $result[]           = $detalle;
@@ -157,6 +167,8 @@
                 'ot_fecha_inicio_trabajo_2'	            => "",
                 'ot_fecha_final_trabajo'	            => "",
                 'ot_fecha_final_trabajo_2'	            => "",
+                'ot_administrador'	                    => "",
+                'ot_auditor'	                        => "",
                 'ot_observacion'	                    => ""
             );	
             $result[]   = $detalle;
@@ -182,6 +194,8 @@
 		a.ODTFIC_NRO		AS		ot_numero, 
 		a.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
         a.ODTFIC_FFT		AS		ot_fecha_final_trabajo,
+        a.ODTFIC_ADM        AS      ot_administrador,
+        a.ODTFIC_AUD        AS      ot_auditor,
         a.ODTFIC_OBS		AS		ot_observacion
 		
 		FROM ODTFIC a
@@ -216,6 +230,8 @@
                     'ot_fecha_inicio_trabajo_2'	            => $fecha1,
                     'ot_fecha_final_trabajo'	            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	            => $fecha2,
+                    'ot_administrador'	                    => $row['ot_administrador'],
+                    'ot_auditor'	                        => $row['ot_auditor'],
                     'ot_observacion'	                    => $row['ot_observacion']
 				);	
                 $result[]           = $detalle;
@@ -242,6 +258,8 @@
                 'ot_fecha_inicio_trabajo_2'	            => "",
                 'ot_fecha_final_trabajo'	            => "",
                 'ot_fecha_final_trabajo_2'	            => "",
+                'ot_administrador'	                    => "",
+                'ot_auditor'	                        => "",
                 'ot_observacion'	                    => ""
             );	
             $result[]   = $detalle;
@@ -267,6 +285,8 @@
 		a.ODTFIC_NRO		AS		ot_numero, 
 		a.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
         a.ODTFIC_FFT		AS		ot_fecha_final_trabajo,
+        a.ODTFIC_ADM        AS      ot_administrador,
+        a.ODTFIC_AUD        AS      ot_auditor,
         a.ODTFIC_OBS		AS		ot_observacion
 		
 		FROM ODTFIC a
@@ -304,6 +324,8 @@
                     'ot_fecha_inicio_trabajo_2'	            => $fecha1,
                     'ot_fecha_final_trabajo'	            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	            => $fecha2,
+                    'ot_administrador'	                    => $row['ot_administrador'],
+                    'ot_auditor'	                        => $row['ot_auditor'],
                     'ot_observacion'	                    => $row['ot_observacion']
 				);	
                 $result[]           = $detalle;
@@ -330,6 +352,8 @@
                 'ot_fecha_inicio_trabajo_2'	            => "",
                 'ot_fecha_final_trabajo'	            => "",
                 'ot_fecha_final_trabajo_2'	            => "",
+                'ot_administrador'	                    => "",
+                'ot_auditor'	                        => "",
                 'ot_observacion'	                    => ""
             );	
             $result[]   = $detalle;
@@ -355,6 +379,8 @@
 		a.ODTFIC_NRO		AS		ot_numero, 
 		a.ODTFIC_FIT		AS		ot_fecha_inicio_trabajo,
         a.ODTFIC_FFT		AS		ot_fecha_final_trabajo,
+        a.ODTFIC_ADM        AS      ot_administrador,
+        a.ODTFIC_AUD        AS      ot_auditor,
         a.ODTFIC_OBS		AS		ot_observacion
 		
 		FROM ODTFIC a
@@ -393,6 +419,8 @@
                     'ot_fecha_inicio_trabajo_2'	            => $fecha1,
                     'ot_fecha_final_trabajo'	            => $row['ot_fecha_final_trabajo'],
                     'ot_fecha_final_trabajo_2'	            => $fecha2,
+                    'ot_administrador'	                    => $row['ot_administrador'],
+                    'ot_auditor'	                        => $row['ot_auditor'],
                     'ot_observacion'	                    => $row['ot_observacion']
 				);	
                 $result[]           = $detalle;
@@ -419,6 +447,8 @@
                 'ot_fecha_inicio_trabajo_2'	            => "",
                 'ot_fecha_final_trabajo'	            => "",
                 'ot_fecha_final_trabajo_2'	            => "",
+                'ot_administrador'	                    => "",
+                'ot_auditor'	                        => "",
                 'ot_observacion'	                    => ""
             );	
             $result[]   = $detalle;
@@ -438,9 +468,11 @@
         $val04                      = $request->getParsedBody()['ot_fecha_inicio_trabajo'];
         $val05                      = $request->getParsedBody()['ot_fecha_final_trabajo'];
         $val06                      = $request->getParsedBody()['ot_observacion'];
+        $val07                      = $request->getParsedBody()['ot_administrador'];
+        $val08                      = $request->getParsedBody()['ot_auditor'];
         
         if (isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
-            $sql                    = "INSERT INTO ODTFIC (ODTFIC_EOC, ODTFIC_ESC, ODTFIC_NRO, ODTFIC_FIT, ODTFIC_FFT, ODTFIC_OBS) VALUES ('$val01', '$val02', '".$val03."', '".$val04."', '".$val05."', '".$val06."')";
+            $sql                    = "INSERT INTO ODTFIC (ODTFIC_EOC, ODTFIC_ESC, ODTFIC_NRO, ODTFIC_FIT, ODTFIC_FFT, ODTFIC_ADM, ODTFIC_AUD, ODTFIC_OBS) VALUES ('$val01', '$val02', '".$val03."', '".$val04."', '".$val05."', '".$val07."', '".$val08."', '".$val06."')";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se inserto con exito', 'codigo' => $mysqli->insert_id), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
@@ -468,9 +500,11 @@
         $val04                      = $request->getParsedBody()['ot_fecha_inicio_trabajo'];
         $val05                      = $request->getParsedBody()['ot_fecha_final_trabajo'];
         $val06                      = $request->getParsedBody()['ot_observacion'];
+        $val07                      = $request->getParsedBody()['ot_administrador'];
+        $val08                      = $request->getParsedBody()['ot_auditor'];
         
         if (isset($val00) && isset($val01) && isset($val02) && isset($val03) && isset($val04)) {
-            $sql                    = "UPDATE ODTFIC SET ODTFIC_EOC = '$val01', ODTFIC_ESC = '$val02', ODTFIC_NRO = '".$val03."', ODTFIC_FIT = '".$val04."', ODTFIC_FFT = '".$val05."', ODTFIC_OBS = '".$val06."' WHERE ODTFIC_COD = '$val00'";
+            $sql                    = "UPDATE ODTFIC SET ODTFIC_EOC = '$val01', ODTFIC_ESC = '$val02', ODTFIC_NRO = '".$val03."', ODTFIC_FIT = '".$val04."', ODTFIC_FFT = '".$val05."', ODTFIC_ADM = '".$val07."', ODTFIC_AUD = '".$val08."', ODTFIC_OBS = '".$val06."' WHERE ODTFIC_COD = '$val00'";
             if ($mysqli->query($sql) === TRUE) {
                 header("Content-Type: application/json; charset=utf-8");
                 $json               = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Se actualizo con exito'), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
