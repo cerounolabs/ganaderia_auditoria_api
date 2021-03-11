@@ -616,6 +616,50 @@
         return $json;
     });
 
+    $app->get('/api/v1/1200/ot/potrero/{codigo}', function($request) {
+        require __DIR__.'/../src/connect.php';
+        
+		$val00                      = $request->getAttribute('codigo');
+		$sql                        = "SELECT
+        h.ESTPOT_COD        AS      potrero_codigo,
+        h.ESTPOT_NOM        AS      potrero_nombre
+		
+		FROM ODTAUD a
+        INNER JOIN ESTPOT h ON a.ODTAUD_POC = h.ESTPOT_COD
+		
+		WHERE a.ODTAUD_ORC = '$val00'
+        GROUP BY h.ESTPOT_COD, h.ESTPOT_NOM
+		ORDER BY h.ESTPOT_COD, h.ESTPOT_NOM";
+		
+        if ($query = $mysqli->query($sql)) {
+            while($row = $query->fetch_assoc()) {
+                $detalle			= array(
+                    'potrero_codigo'	                                    => $row['potrero_codigo'],
+                    'potrero_nombre'	                                    => $row['potrero_nombre']
+				);
+                $result[]           = $detalle;
+            }
+			$query->free();
+        }
+        
+        $mysqli->close();
+        
+        if (isset($result)){
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        } else {
+            $detalle    = array(
+                'potrero_codigo'	                                    => "",
+                'potrero_nombre'	                                    => ""
+            );	
+            $result[]   = $detalle;
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        }
+        
+        return $json;
+    });
+
     $app->get('/api/v1/1200/ot/resumen/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
         
