@@ -790,6 +790,51 @@
         return $json;
     });
 
+    $app->get('/api/v1/1200/ot/filtro/subcategoria/{codigo}', function($request) {
+        require __DIR__.'/../src/connect.php';
+        
+		$val00      = $request->getAttribute('codigo');
+		$sql        = "SELECT
+            e.DOMFIC_COD		AS		subcategoria_codigo,
+            e.DOMFIC_NOM		AS		subcategoria_nombre
+            
+            FROM ODTAUD a
+            INNER JOIN DOMTYS c ON a.ODTAUD_CSC = c.DOMTYS_COD
+            INNER JOIN DOMFIC e ON c.DOMTYS_SUC = e.DOMFIC_COD
+            
+            WHERE a.ODTAUD_ORC = '$val00'
+            GROUP BY e.DOMFIC_COD, e.DOMFIC_NOM
+            ORDER BY e.DOMFIC_COD, e.DOMFIC_NOM";
+		
+        if ($query = $mysqli->query($sql)) {
+            while($row = $query->fetch_assoc()) {
+                $detalle    = array(
+                    'subcategoria_codigo'   => $row['subcategoria_codigo'],
+                    'subcategoria_nombre'   => $row['subcategoria_nombre']
+				);
+                $result[]   = $detalle;
+            }
+			$query->free();
+        }
+        
+        $mysqli->close();
+        
+        if (isset($result)){
+            header("Content-Type: application/json; charset=utf-8");
+            $json           = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        } else {
+            $detalle    = array(
+                'subcategoria_codigo'       => "",
+                'subcategoria_nombre'       => ""
+            );	
+            $result[]   = $detalle;
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        }
+        
+        return $json;
+    });
+
     $app->get('/api/v1/1200/ot/resumen/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
         
