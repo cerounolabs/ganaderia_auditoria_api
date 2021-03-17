@@ -616,11 +616,96 @@
         return $json;
     });
 
-    $app->get('/api/v1/1200/ot/potrero/{codigo}', function($request) {
+    $app->get('/api/v1/1200/ot/filtro/fechaauditada/{codigo}', function($request) {
         require __DIR__.'/../src/connect.php';
         
-		$val00                      = $request->getAttribute('codigo');
-		$sql                        = "SELECT
+		$val00  = $request->getAttribute('codigo');
+		$sql    = "SELECT
+            a.ODTAUD_FEC		AS		ot_auditada_fecha
+            
+            FROM ODTAUD a
+            
+            WHERE a.ODTAUD_ORC = '$val00'
+            GROUP BY a.ODTAUD_FEC
+            ORDER BY a.ODTAUD_FEC";
+		
+        if ($query = $mysqli->query($sql)) {
+            while($row = $query->fetch_assoc()) {
+                $detalle    = array(
+                    'ot_auditada_fecha' => $row['ot_auditada_fecha']
+				);
+                $result[]   = $detalle;
+            }
+			$query->free();
+        }
+        
+        $mysqli->close();
+        
+        if (isset($result)){
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        } else {
+            $detalle    = array(
+                'ot_auditada_fecha'     => ""
+            );	
+            $result[]   = $detalle;
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        }
+        
+        return $json;
+    });
+
+    $app->get('/api/v1/1200/ot/filtro/sector/{codigo}', function($request) {
+        require __DIR__.'/../src/connect.php';
+        
+		$val00  = $request->getAttribute('codigo');
+		$sql    = "SELECT
+            i.ESTSEC_COD		AS		sector_codigo, 
+            i.ESTSEC_NOM		AS		sector_nombre
+            
+            FROM ODTAUD a
+            INNER JOIN ESTPOT h ON a.ODTAUD_POC = h.ESTPOT_COD
+            INNER JOIN ESTSEC i ON h.ESTPOT_SEC = i.ESTSEC_COD
+            
+            WHERE a.ODTAUD_ORC = '$val00'
+            GROUP BY i.ESTSEC_COD, i.ESTSEC_NOM
+            ORDER BY i.ESTSEC_COD, i.ESTSEC_NOM";
+		
+        if ($query = $mysqli->query($sql)) {
+            while($row = $query->fetch_assoc()) {
+                $detalle    = array(
+                    'sector_codigo'     => $row['sector_codigo'],
+                    'sector_nombre'     => $row['sector_nombre']
+				);
+                $result[]   = $detalle;
+            }
+			$query->free();
+        }
+        
+        $mysqli->close();
+        
+        if (isset($result)){
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        } else {
+            $detalle        = array(
+                'sector_codigo'         => "",
+                'sector_nombre'         => ""
+            );	
+            $result[]   = $detalle;
+            header("Content-Type: application/json; charset=utf-8");
+            $json                   = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        }
+        
+        return $json;
+    });
+
+    $app->get('/api/v1/1200/ot/filtro/potrero/{codigo}', function($request) {
+        require __DIR__.'/../src/connect.php';
+        
+		$val00  = $request->getAttribute('codigo');
+		$sql    = "SELECT
         h.ESTPOT_COD        AS      potrero_codigo,
         h.ESTPOT_NOM        AS      potrero_nombre
 		
@@ -633,11 +718,11 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
-                $detalle			= array(
-                    'potrero_codigo'	                                    => $row['potrero_codigo'],
-                    'potrero_nombre'	                                    => $row['potrero_nombre']
+                $detalle    = array(
+                    'potrero_codigo'        => $row['potrero_codigo'],
+                    'potrero_nombre'        => $row['potrero_nombre']
 				);
-                $result[]           = $detalle;
+                $result[]   = $detalle;
             }
 			$query->free();
         }
@@ -649,8 +734,53 @@
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
-                'potrero_codigo'	                                    => "",
-                'potrero_nombre'	                                    => ""
+                'potrero_codigo'            => "",
+                'potrero_nombre'            => ""
+            );	
+            $result[]   = $detalle;
+            header("Content-Type: application/json; charset=utf-8");
+            $json       = json_encode(array('code' => 204, 'status' => 'ok', 'message' => 'No hay registros', 'data' => $detalle), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        }
+        
+        return $json;
+    });
+
+    $app->get('/api/v1/1200/ot/filtro/categoria/{codigo}', function($request) {
+        require __DIR__.'/../src/connect.php';
+        
+		$val00      = $request->getAttribute('codigo');
+		$sql        = "SELECT
+            d.DOMFIC_COD		AS		categoria_codigo,
+            d.DOMFIC_NOM		AS		categoria_nombre
+            
+            FROM ODTAUD a
+            INNER JOIN DOMTYS c ON a.ODTAUD_CSC = c.DOMTYS_COD
+            INNER JOIN DOMFIC d ON c.DOMTYS_TIC = d.DOMFIC_COD
+            
+            WHERE a.ODTAUD_ORC = '$val00'
+            GROUP BY d.DOMFIC_COD, d.DOMFIC_NOM
+            ORDER BY d.DOMFIC_COD, d.DOMFIC_NOM";
+		
+        if ($query = $mysqli->query($sql)) {
+            while($row = $query->fetch_assoc()) {
+                $detalle    = array(
+                    'categoria_codigo'      => $row['categoria_codigo'],
+                    'categoria_nombre'      => $row['categoria_nombre']
+				);
+                $result[]   = $detalle;
+            }
+			$query->free();
+        }
+        
+        $mysqli->close();
+        
+        if (isset($result)){
+            header("Content-Type: application/json; charset=utf-8");
+            $json           = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
+        } else {
+            $detalle    = array(
+                'categoria_codigo'          => "",
+                'categoria_nombre'          => ""
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
