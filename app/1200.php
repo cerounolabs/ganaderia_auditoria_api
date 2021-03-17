@@ -631,8 +631,14 @@
 		
         if ($query = $mysqli->query($sql)) {
             while($row = $query->fetch_assoc()) {
+                $dia2    = substr($row['ot_fecha_final_trabajo'], 8);
+                $mes2    = substr($row['ot_fecha_final_trabajo'], 5, -3);
+                $ano2    = substr($row['ot_fecha_final_trabajo'], 0, -6);
+                $fecha2  = $dia2.'/'.$mes2.'/'.$ano2;
+
                 $detalle    = array(
-                    'ot_auditada_fecha' => $row['ot_auditada_fecha']
+                    'ot_auditada_fecha_1'   => $row['ot_auditada_fecha'],
+                    'ot_auditada_fecha_2'   => $row['ot_auditada_fecha']
 				);
                 $result[]   = $detalle;
             }
@@ -646,7 +652,8 @@
             $json                   = json_encode(array('code' => 200, 'status' => 'ok', 'message' => 'Consulta con exito', 'data' => $result), JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
         } else {
             $detalle    = array(
-                'ot_auditada_fecha'     => ""
+                'ot_auditada_fecha_1'       => '',
+                'ot_auditada_fecha_2'       => ''
             );	
             $result[]   = $detalle;
             header("Content-Type: application/json; charset=utf-8");
